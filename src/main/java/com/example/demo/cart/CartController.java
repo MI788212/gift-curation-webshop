@@ -32,4 +32,16 @@ public class CartController {
         model.addAttribute("cart", cart);
         return "cart";
     }
+
+    @PostMapping("/cart/remove")
+    public String removeFromCart(@RequestParam Long productId) {
+        cart.removeItem(productId);
+        return "redirect:/cart";
+    }
+
+    @PostMapping("/cart/update")
+    public String updateQuantity(@RequestParam Long productId, @RequestParam int quantity) {
+        cart.setQuantity(productId, quantity);
+        return "redirect:/cart";
+    }
 }

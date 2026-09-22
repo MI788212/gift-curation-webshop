@@ -43,4 +43,12 @@ public class Cart {
     public boolean isEmpty() {
         return items.isEmpty();
     }
+
+    public void setQuantity(Long productId, int quantity) {
+        if (quantity <= 0) {
+            removeItem(productId);
+        } else {
+            items.put(productId, quantity);
+        }
+    }
 }
