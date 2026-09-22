@@ -9,6 +9,14 @@
 <h1 th:text="${product.name}">Product name</h1>
 <p th:text="${product.price}">0.00</p>
 
+<form th:action="@{/cart/add}" method="post">
+    <input type="hidden" name="productId" th:value="${product.id}" />
+    <label>Quantity:
+        <input type="number" name="quantity" value="1" min="1" />
+    </label>
+    <button type="submit">Add to cart</button>
+</form>
+
 <a th:href="@{/products}">Back to all products</a>
 
 </body>

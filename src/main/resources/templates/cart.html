@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Cart</title>
+</head>
+<body>
+
+<h1>Your Cart</h1>
+
+<div th:if="${cart.empty}">
+    <p>Your cart is empty.</p>
+</div>
+
+<div th:unless="${cart.empty}">
+    <div th:each="entry : ${cart.items}">
+        <span th:text="${cart.products.get(entry.key).name}">Name</span>
+        — qty: <span th:text="${entry.value}">1</span>
+        — <span th:text="${cart.products.get(entry.key).price}">0.00</span>
+    </div>
+
+    <h3>Total: <span th:text="${cart.total}">0.00</span></h3>
+</div>
+
+<a th:href="@{/products}">Continue shopping</a>
+
+</body>
+</html>
