@@ -7,7 +7,9 @@
 <body>
 
 <div th:each="p : ${products}">
-    <h3 th:text="${p.name}">Placeholder</h3>
+    <a th:href="@{/products/{id}(id=${p.id})}">
+        <h3 th:text="${p.name}">Placeholder</h3>
+    </a>
     <p th:text="${p.price}">0.00</p>
 </div>
 
