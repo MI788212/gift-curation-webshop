@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
 <h1>Your Cart</h1>
 
 <div th:if="${cart.cartEmpty}">

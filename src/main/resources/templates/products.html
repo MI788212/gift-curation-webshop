@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
 <div th:each="p : ${products}">
     <a th:href="@{/products/{id}(id=${p.id})}">
         <h3 th:text="${p.name}">Placeholder</h3>
