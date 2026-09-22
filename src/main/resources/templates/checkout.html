@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+</head>
+<body>
+
+<h1>Checkout</h1>
+
+<h3>Order summary</h3>
+<div th:each="entry : ${cart.items}">
+    <span th:text="${cart.products.get(entry.key).name}">Name</span>
+    — qty: <span th:text="${entry.value}">1</span>
+</div>
+<h3>Total: <span th:text="${cart.total}">0.00</span></h3>
+
+<form th:action="@{/checkout}" method="post">
+    <label>Name:
+        <input type="text" name="customerName" required />
+    </label>
+    <br/>
+    <label>Email:
+        <input type="email" name="customerEmail" required />
+    </label>
+    <br/>
+    <button type="submit">Place order</button>
+</form>
+
+</body>
+</html>

@@ -40,7 +40,7 @@ public class Cart {
         return total;
     }
 
-    public boolean isEmpty() {
+    public boolean isCartEmpty() {
         return items.isEmpty();
     }
 
@@ -50,5 +50,10 @@ public class Cart {
         } else {
             items.put(productId, quantity);
         }
+    }
+
+    public void clear() {
+        items.clear();
+        products.clear();
     }
 }

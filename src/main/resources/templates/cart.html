@@ -8,11 +8,11 @@
 
 <h1>Your Cart</h1>
 
-<div th:if="${cart.isEmpty()}">
+<div th:if="${cart.cartEmpty}">
     <p>Your cart is empty.</p>
 </div>
 
-<div th:unless="${cart.isEmpty()}">
+<div th:unless="${cart.cartEmpty}">
     <div th:each="entry : ${cart.items}">
         <span th:text="${cart.products.get(entry.key).name}">Name</span>
         — qty: <span th:text="${entry.value}">1</span>
@@ -32,6 +32,7 @@
     </div>
 
     <h3>Total: <span th:text="${cart.total}">0.00</span></h3>
+    <a th:unless="${cart.cartEmpty}" th:href="@{/checkout}">Proceed to checkout</a>
 </div>
 
 <a th:href="@{/products}">Continue shopping</a>
