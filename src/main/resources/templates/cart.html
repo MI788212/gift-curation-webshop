@@ -13,12 +13,12 @@
 <h1 th:text="#{cart.title}">Your Cart</h1>
 
 <div th:if="${cart.cartEmpty}">
-    <p>Your cart is empty.</p>
+    <p th:text="#{cart.cartEmpty}">Your cart is empty.</p>
 </div>
 
 <div th:unless="${cart.cartEmpty}">
     <div th:each="entry : ${cart.items}">
-        <span th:text="${cart.products.get(entry.key).name}">Name</span>
+        <a th:href="@{/products/{id}(id=${entry.key})}" th:text="${cart.products.get(entry.key).name}">Name</a>
         — qty: <span th:text="${entry.value}">1</span>
 
         <form th:action="@{/cart/update}" method="post" style="display:inline">
@@ -31,7 +31,7 @@
 
         <form th:action="@{/cart/remove}" method="post" style="display:inline">
             <input type="hidden" name="productId" th:value="${entry.key}" />
-            <button type="submit">Remove</button>
+            <button type="submit" th:text="#{cart.remove}">Remove</button>
         </form>
     </div>
 
