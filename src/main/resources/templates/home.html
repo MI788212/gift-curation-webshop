@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title th:text="#{home.title}">Home</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
@@ -10,9 +10,9 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1>Welcome to ManCave</h1>
-<p>Your one-stop shop for a man's curated gift.</p>
-<a th:href="@{/products}">Shop now</a>
+<h1 th:text="#{home.title}">Welcome to ManCave</h1>
+<p th:text="#{home.slogan}">Your one-stop shop for a man's curated gift.</p>
+<a th:href="@{/products}" th:text="#{home.shopNow}">Shop now</a>
 
 </body>
 </html>

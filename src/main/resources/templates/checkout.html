@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Checkout</title>
+    <title th:text="#{checkout.title}">Checkout</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
@@ -10,25 +10,25 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1>Checkout</h1>
+<h1 th:text="#{checkout.title}">Checkout</h1>
 
-<h3>Order summary</h3>
+<h3 th:text="#{checkout.orderSummary}">Order summary</h3>
 <div th:each="entry : ${cart.items}">
     <span th:text="${cart.products.get(entry.key).name}">Name</span>
     — qty: <span th:text="${entry.value}">1</span>
 </div>
-<h3>Total: <span th:text="${cart.total}">0.00</span></h3>
+<h3 th:text="#{checkout.total}">Total: <span th:text="${cart.total}">0.00</span></h3>
 
 <form th:action="@{/checkout}" method="post">
-    <label>Name:
+    <label><span  th:text="#{checkout.name}">Name</span>:
         <input type="text" name="customerName" required />
     </label>
     <br/>
-    <label>Email:
+    <label><span th:text="#{checkout.email}">Email</span>:
         <input type="email" name="customerEmail" required />
     </label>
     <br/>
-    <button type="submit">Place order</button>
+    <button type="submit" th:text="#{checkout.placeOrder}">Place order</button>
 </form>
 
 </body>

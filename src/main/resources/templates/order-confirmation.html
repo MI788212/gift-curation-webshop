@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Order Confirmation</title>
+    <title th:text="#{order-confirmation.thankYou}">Order Confirmation</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
@@ -10,8 +10,8 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1>Thank you, <span th:text="${order.customerName}">Name</span>!</h1>
-<p>Your order #<span th:text="${order.id}">1</span> has been placed.</p>
+<h1><span th:text="#{order-confirmation.thankYou}">Thank you</span>, <span th:text="${order.customerName}">Name</span>!</h1>
+<p th:text="#{order-confirmation.confirmation(${order.id})}">Your order #<span th:text="${order.id}">1</span> has been placed.</p>
 
 <div th:each="item : ${order.items}">
     <span th:text="${item.product.name}">Product</span>
@@ -21,7 +21,7 @@
 
 <h3>Total: <span th:text="${order.total}">0.00</span></h3>
 
-<a th:href="@{/products}">Continue shopping</a>
+<a th:href="@{/products}" th:text="#{order-confirmation.continueShopping}">Continue shopping</a>
 
 </body>
 </html>

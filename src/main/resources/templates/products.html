@@ -2,13 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title th:text="#{products.title}">Products</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<h1 th:text="#{products.title}">Products</h1>
 
 <div th:each="p : ${products}">
     <a th:href="@{/products/{id}(id=${p.id})}">
