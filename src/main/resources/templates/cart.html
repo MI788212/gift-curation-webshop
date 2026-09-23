@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Your Cart</title>
+    <title th:text="#{cart.title}">Your Cart</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
@@ -10,7 +10,7 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1>Your Cart</h1>
+<h1 th:text="#{cart.title}">Your Cart</h1>
 
 <div th:if="${cart.cartEmpty}">
     <p>Your cart is empty.</p>
@@ -35,11 +35,11 @@
         </form>
     </div>
 
-    <h3>Total: <span th:text="${cart.total}">0.00</span></h3>
-    <a th:unless="${cart.cartEmpty}" th:href="@{/checkout}">Proceed to checkout</a>
+    <h3 th:text="#{cart.total}">Total: <span th:text="${cart.total}">0.00</span></h3>
+    <a th:unless="${cart.cartEmpty}" th:href="@{/checkout}" th:text="#{cart.proceedToCheckout}">Proceed to checkout</a>
 </div>
 
-<a th:href="@{/products}">Continue shopping</a>
+<a th:href="@{/products}" th:text="#{cart.continueShopping}">Continue shopping</a>
 
 </body>
 </html>

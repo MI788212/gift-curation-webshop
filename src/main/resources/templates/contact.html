@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Contact</title>
+    <title th:text="#{contact.title}">Contact</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
@@ -10,9 +10,9 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1>Contact Us</h1>
-<p>Email: contact@example.com</p>
-<p>Phone: 000-000-0000</p>
+<h1 th:text="#{contact.title}">Contact Us</h1>
+<p><span th:text="#{contact.email}">Email:</span> contact@example.com</p>
+<p><span th:text="#{contact.phone}">Phone:</span> 000-000-0000</p>
 
 </body>
 </html>

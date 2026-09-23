@@ -2,15 +2,20 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <script th:src="@{/js/main.js}"></script>
+<meta charset="UTF-8">
 <body>
 
 <nav th:fragment="navbar">
-    <a th:href="@{/}">Home</a>
-    <a th:href="@{/products}">Products</a>
-    <a th:href="@{/cart}">Cart</a>
-    <a th:href="@{/about}">About</a>
-    <a th:href="@{/news}">News</a>
-    <a th:href="@{/contact}">Contact</a>
+    <a th:href="@{/}" th:text="#{navbar.home}">Home</a>
+    <a th:href="@{/products}" th:text="#{navbar.products}">Products</a>
+    <a th:href="@{/cart}" th:text="#{navbar.cart}">Cart</a>
+    <a th:href="@{/about}" th:text="#{navbar.about}">About</a>
+    <a th:href="@{/news}" th:text="#{navbar.news}">News</a>
+    <a th:href="@{/contact}" th:text="#{navbar.contact}">Contact</a>
+    <div class="lang-switcher">
+        <a th:href="@{''(lang=en)}">EN</a> |
+        <a th:href="@{''(lang=mk)}">MK</a>
+    </div>
 </nav>
 
 </body>

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>News</title>
+    <title th:text="#{news.title}">News</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
@@ -10,7 +10,7 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1>News</h1>
+<h1 th:text="#{news.title}">News</h1>
 
 <article>
     <h3>New Summer Collection</h3>
