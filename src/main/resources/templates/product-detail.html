@@ -13,6 +13,18 @@
 <h1 th:text="${product.name}">Product name</h1>
 <p th:text="${product.price}">0.00</p>
 
+<button type="button"
+        th:text="#{product-detail.addToFavorites}"
+        th:onclick="'addFavorite(' + ${product.id} + ')'">
+    Add to favorites
+</button>
+
+<script>
+    function addFavorite(id) {
+        fetch('/favorites/add?productId=' + id, { method: 'POST' });
+    }
+</script>
+
 <form th:action="@{/cart/add}" method="post">
     <input type="hidden" name="productId" th:value="${product.id}" />
     <label><span th:text="#{product-detail.quantity}">Quantity</span>:
