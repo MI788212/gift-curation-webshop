@@ -3,37 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${product.name}">Product Detail</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css?v=1}">
+    <link rel="stylesheet" th:href="@{/css/product-detailsStyle.css?v=1}">
     <script th:src="@{/js/main.js}"></script>
 </head>
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1 th:text="${product.name}">Product name</h1>
-<p th:text="${product.price}">0.00</p>
+<div id="body">
+    <div id="product-profile">
+        <img th:src="${product.imageUrl}" src="https://via.placeholder.com/200" alt="Product image">
+    </div>
 
-<button type="button"
-        th:text="#{product-detail.addToFavorites}"
-        th:onclick="'addFavorite(' + ${product.id} + ')'">
-    Add to favorites
-</button>
 
-<script>
-    function addFavorite(id) {
-        fetch('/favorites/add?productId=' + id, { method: 'POST' });
-    }
-</script>
+    <div id="products-functions">
 
-<form th:action="@{/cart/add}" method="post">
-    <input type="hidden" name="productId" th:value="${product.id}" />
-    <label><span th:text="#{product-detail.quantity}">Quantity</span>:
-        <input type="number" name="quantity" value="1" min="1" />
-    </label>
-    <button type="submit" th:text="#{product-detail.addToCart}">Add to cart</button>
-</form>
+            <h1 th:text="${product.name}">Product name</h1>
+            <p class="discription" th:text="${#numbers.formatDecimal(product.price, 0, 0)} + ' ден.'">0</p>
+            <p th:text="${product.description}">Тука оди описот на продуктот...</p>
 
-<a th:href="@{/products}" th:text="#{product-detail.back}">Back to all products</a>
+            <button type="button" class="btn btn-fav"
+                    th:text="#{product-detail.addToFavorites}"
+                    th:onclick="'addFavorite(' + ${product.id} + ')'">
+                Add to favorites
+            </button>
+
+            <script>
+                function addFavorite(id) {
+                    fetch('/favorites/add?productId=' + id, { method: 'POST' });
+                }
+            </script>
+
+            <form th:action="@{/cart/add}" method="post" class=cart-form"">
+                <input type="hidden" name="productId" th:value="${product.id}" />
+                <label><span th:text="#{product-detail.quantity}">Quantity</span>:
+                    <input type="number" name="quantity" value="1" min="1" class="qty-input" />
+                </label>
+                <button type="submit" class="btn btn-cart" th:text="#{product-detail.addToCart}">Add to cart</button>
+            </form>
+
+            <a th:href="@{/products}" class="back-link" th:text="#{product-detail.back}">Back to all products</a>
+    </div>
+
+</div>
 
 </body>
 </html>

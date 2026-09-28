@@ -1,0 +1,108 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#body {
+    border: 0.3rem solid #ccc;
+    border-radius: 5rem;
+    width: 70%;
+    height: 90vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+#product-profile{
+    margin-left: 1rem;
+    border: 0.3rem solid #ccc;
+    border-radius: 5rem;
+    width: 65%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#products-functions {
+    width: 35%;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 0.75rem;
+    font-family: Arial, sans-serif;
+}
+
+#products-functions h1 {
+    text-align: center;
+    font-size: 1.375rem;
+    margin: 0;
+    line-height: 1.3;
+}
+
+#products-functions .price {
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0;
+}
+
+#products-functions p {
+    text-align: center;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
+    color: #555;
+    line-height: 1.4;
+}
+
+/* Копчиња */
+.btn {
+    padding: 0.5em 0.8em;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.25rem;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.btn:hover {
+    background-color: #e2e6ea;
+}
+
+/* Форма за кошничка */
+.cart-form {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-top: 0.3rem;
+}
+
+.qty-input {
+    width: 6ch; /* Однос спрема ширината на знаци (6 карактери) */
+    padding: 0.25em;
+    border: 0.0625rem solid #ccc;
+    border-radius: 0.25rem;
+}
+
+/* Линк за назад */
+.back-link {
+    text-align: center;
+    margin-top: 0.625rem;
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
