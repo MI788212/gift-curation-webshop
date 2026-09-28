@@ -1,18 +1,120 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title th:text="#{home.title}">Home</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
+
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1 th:text="#{home.title}">Welcome to ManCave</h1>
-<p th:text="#{home.slogan}">Your one-stop shop for a man's curated gift.</p>
-<a th:href="@{/products}" th:text="#{home.shopNow}">Shop now</a>
+<!-- header video -->
+<video autoplay muted loop id="headerVideo">
+    <source th:src="@{/video/watchMechanism.mp4}" type="video/mp4">
+</video>
+
+<div class="content">
+    <h1 th:text="#{home.header}">Man Cave</h1>
+    <!-- button to pause/play the video with JavaScript -->
+    <button id="myBtn" onclick="stopVideoButton()" th:text="#{home.videoButton}">
+        stop
+    </button>
+    <!-- ... -->
+</div>
+
+<div class="homeIntroductionContent">
+    <!-- introduction -->
+    <p th:text="#{home.aboutText}">Интересни, практични и внимателно избрани подароци за мажи со свој стил.<br>
+        Пронајди го подарокот што не
+        знаеше дека му треба.</p>
+    <!-- ... -->
+    <h1 th:text="#{home.title}">Man Cave</h1>
+    <p th:text="#{home.slogan}">Не прашувај што сака. Знаеме ние.</p>
+    <a th:href="@{/products}" th:text="#{home.shopNow}">Купи сега</a>
+</div>
+
+<!-- categories filter -->
+<section class="categories">
+    <h2 th:text="#{home.categoriesTitle}">Што бараш?</h2>
+
+    <div class="categoryContainer">
+
+        <a href="#" class="categoryCard">
+            <h3 th:text="#{home.categoryGadgets}">Gadgets</h3>
+            <p th:text="#{home.categoryGadgetsText}">
+                Интересни работи за секој ден.
+            </p>
+        </a>
+
+        <a href="#" class="categoryCard">
+            <h3 th:text="#{home.categoryAccessories}">Accessories</h3>
+            <p th:text="#{home.categoryAccessoriesText}">
+                Додатоци што го надополнуваат секој стил.
+            </p>
+        </a>
+
+        <a href="#" class="categoryCard">
+            <h3 th:text="#{home.categoryLifestyle}">Lifestyle</h3>
+            <p th:text="#{home.categoryLifestyleText}">
+                Работи за подобро секојдневие.
+            </p>
+        </a>
+    </div>
+</section>
+<!--  -->
+
+<!-- featured products -->
+<section class="featuredProducts">
+
+    <h2 th:text="#{home.featuredTitle}">Избрани производи</h2>
+
+    <div class="productScroll">
+
+        <a href="#" class="productCard">
+            <img src="images/product1.jpg" alt="Product">
+            <h3>Product name</h3>
+            <p>1.299 ден.</p>
+        </a>
+
+        <a href="#" class="productCard">
+            <img src="images/product2.jpg" alt="Product">
+            <h3>Product name</h3>
+            <p>999 ден.</p>
+        </a>
+
+        <a href="#" class="productCard">
+            <img src="images/product3.jpg" alt="Product">
+            <h3>Product name</h3>
+            <p>1.499 ден.</p>
+        </a>
+
+        <a href="#" class="productCard">
+            <img src="images/product4.jpg" alt="Product">
+            <h3>Product name</h3>
+            <p>799 ден.</p>
+        </a>
+
+    </div>
+
+    <a class="viewAllProducts" th:href="@{/products}" th:text="#{home.viewAllProducts}">
+        Види ги сите производи
+    </a>
+
+</section>
+<!-- ... -->
+
+<!-- closing remarks -->
+<section class="whyManCave">
+    <div class="whyManCaveContent">
+        <h2 th:text="#{home.whyTitle}">Со љубов и внимание, Man Cave.</h2>
+    </div>
+</section>
+<!-- ... -->
 
 </body>
+
 </html>
