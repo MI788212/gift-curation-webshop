@@ -4,15 +4,49 @@
     <meta charset="UTF-8">
     <title th:text="#{contact.title}">Contact</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/contact.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1 th:text="#{contact.title}">Contact Us</h1>
-<p><span th:text="#{contact.email}">Email:</span> contact@example.com</p>
-<p><span th:text="#{contact.phone}">Phone:</span> 000-000-0000</p>
+<main class="contactPage">
+    <header class="contactHero">
+        <h1 th:text="#{contact.title}">Contact Us</h1>
+        <p th:text="#{contact.subtitle}">We'd love to hear from you.</p>
+    </header>
+
+    <div class="contactGrid">
+        <section class="contactInfo">
+            <h2 th:text="#{contact.info.title}">Get in touch</h2>
+            <p class="contactInfoRow">
+                <span class="contactInfoLabel" th:text="#{contact.email}">Email:</span>
+                <span>contact@example.com</span>
+            </p>
+            <p class="contactInfoRow">
+                <span class="contactInfoLabel" th:text="#{contact.phone}">Phone:</span>
+                <span>000-000-0000</span>
+            </p>
+        </section>
+
+        <section class="contactFormBox">
+            <h2 th:text="#{contact.form.title}">Send us a message</h2>
+            <form class="contactForm" th:action="@{/contact}" method="get">
+                <label for="contact-name" th:text="#{contact.form.name}">Name</label>
+                <input type="text" id="contact-name" name="name" required>
+
+                <label for="contact-email" th:text="#{contact.form.email}">Email</label>
+                <input type="email" id="contact-email" name="email" required>
+
+                <label for="contact-message" th:text="#{contact.form.message}">Message</label>
+                <textarea id="contact-message" name="message" rows="5" required></textarea>
+
+                <button type="submit" th:text="#{contact.form.submit}">Send</button>
+            </form>
+        </section>
+    </div>
+</main>
 
 </body>
 </html>
