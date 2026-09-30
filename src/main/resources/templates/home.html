@@ -18,48 +18,42 @@
 </video>
 
 <div class="content">
-    <h1 th:text="#{home.header}">Man Cave</h1>
-    <!-- button to pause/play the video with JavaScript -->
-    <button id="myBtn" onclick="stopVideoButton()" th:text="#{home.videoButton}">
-        stop
-    </button>
-    <!-- ... -->
+    <h1 th:text="#{home.brandName}">Man Cave</h1>
 </div>
 
 <div class="homeIntroductionContent">
     <!-- introduction -->
-    <p th:text="#{home.aboutText}">Интересни, практични и внимателно избрани подароци за мажи со свој стил.<br>
-        Пронајди го подарокот што не
-        знаеше дека му треба.</p>
+    <p><span th:text="#{home.introduction.1}">Интересни, практични и внимателно избрани подароци за мажи со свој стил.</span><br>
+        <span th:text="#{home.introduction.2}">Пронајди го подарокот што не знаеше дека му треба.</span></p>
     <!-- ... -->
-    <h1 th:text="#{home.title}">Man Cave</h1>
+    <h1 th:text="#{home.title}">Welcome to ManCave</h1>
     <p th:text="#{home.slogan}">Не прашувај што сака. Знаеме ние.</p>
-    <a th:href="@{/products}" th:text="#{home.shopNow}">Купи сега</a>
+    <a th:href="@{/products}" th:text="#{home.shopNow}">Shop now</a>
 </div>
 
 <!-- categories filter -->
 <section class="categories">
-    <h2 th:text="#{home.categoriesTitle}">Што бараш?</h2>
+    <h2 th:text="#{home.categories.title}">Што бараш?</h2>
 
     <div class="categoryContainer">
 
         <a href="#" class="categoryCard">
-            <h3 th:text="#{home.categoryGadgets}">Gadgets</h3>
-            <p th:text="#{home.categoryGadgetsText}">
+            <h3 th:text="#{home.categories.gadgets.title}">Gadgets</h3>
+            <p th:text="#{home.categories.gadgets.text}">
                 Интересни работи за секој ден.
             </p>
         </a>
 
         <a href="#" class="categoryCard">
-            <h3 th:text="#{home.categoryAccessories}">Accessories</h3>
-            <p th:text="#{home.categoryAccessoriesText}">
+            <h3 th:text="#{home.categories.accessories.title}">Accessories</h3>
+            <p th:text="#{home.categories.accessories.text}">
                 Додатоци што го надополнуваат секој стил.
             </p>
         </a>
 
         <a href="#" class="categoryCard">
-            <h3 th:text="#{home.categoryLifestyle}">Lifestyle</h3>
-            <p th:text="#{home.categoryLifestyleText}">
+            <h3 th:text="#{home.categories.lifestyle.title}">Lifestyle</h3>
+            <p th:text="#{home.categories.lifestyle.text}">
                 Работи за подобро секојдневие.
             </p>
         </a>
@@ -70,7 +64,7 @@
 <!-- featured products -->
 <section class="featuredProducts">
 
-    <h2 th:text="#{home.featuredTitle}">Избрани производи</h2>
+    <h2 th:text="#{home.featured.title}">Избрани производи</h2>
 
     <div class="productScroll">
 
@@ -100,7 +94,7 @@
 
     </div>
 
-    <a class="viewAllProducts" th:href="@{/products}" th:text="#{home.viewAllProducts}">
+    <a class="viewAllProducts" th:href="@{/products}" th:text="#{home.viewAll}">
         Види ги сите производи
     </a>
 
@@ -110,7 +104,7 @@
 <!-- closing remarks -->
 <section class="whyManCave">
     <div class="whyManCaveContent">
-        <h2 th:text="#{home.whyTitle}">Со љубов и внимание, Man Cave.</h2>
+        <h2 th:text="#{home.closingStatement}">Со љубов и внимание, Man Cave.</h2>
     </div>
 </section>
 <!-- ... -->
