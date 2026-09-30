@@ -124,3 +124,9 @@ body {
         padding-right: 1.25rem;
     }
 }
+
+/* MyFont has no Cyrillic letters, so Macedonian headings use the regular font */
+.newsPage:lang(mk) h1,
+.newsPage:lang(mk) h3 {
+    font-family: inherit;
+}
