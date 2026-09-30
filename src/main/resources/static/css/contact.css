@@ -6,13 +6,6 @@
     --contact-card: #f5f5f5;
 }
 
-@font-face {
-    font-family: 'MyFont';
-    src: url('../font/adelia.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
     background-color: var(--contact-primary-bg);
 }
@@ -30,7 +23,6 @@ body {
 }
 
 .contactHero h1 {
-    font-family: 'MyFont', serif;
     font-size: clamp(2rem, 4vw, 3.5rem);
     color: var(--contact-accent);
     margin-bottom: 10px;
@@ -62,7 +54,6 @@ body {
 
 .contactInfo h2,
 .contactFormBox h2 {
-    font-family: 'MyFont', serif;
     font-size: clamp(1.4rem, 2.5vw, 2rem);
     margin-bottom: 20px;
 }
@@ -126,10 +117,4 @@ body {
     .contactGrid {
         grid-template-columns: 1fr;
     }
-}
-
-/* MyFont has no Cyrillic letters, so Macedonian headings use the regular font */
-.contactPage:lang(mk) h1,
-.contactPage:lang(mk) h2 {
-    font-family: inherit;
 }
