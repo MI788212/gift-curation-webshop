@@ -119,7 +119,6 @@ body {
 }
 
 .cartSummary h3 {
-    font-family: 'MyFont', serif;
     font-size: clamp(1.4rem, 2.5vw, 2rem);
     margin: 0 0 1.25rem;
 }
@@ -150,4 +149,9 @@ body {
     display: inline-block;
     margin-top: clamp(20px, 4vw, 40px);
     text-decoration: none;
+}
+
+/* MyFont has no Cyrillic letters, so Macedonian headings use the regular font */
+.cartPage:lang(mk) h1 {
+    font-family: inherit;
 }
