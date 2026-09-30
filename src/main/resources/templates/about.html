@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{about.title}">About Us</title>
-    <!-- <link rel="stylesheet" th:href="@{/css/style.css}"> -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/about.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
 
@@ -15,7 +15,7 @@
 
 <div class="heroAboutUs">
     <div class="heroAboutUs-content">
-        <h1 th:text="#{about.title}">Што е <span>Man Cave</span>?</h1>
+        <h1 th:text="#{about.title}">What is Man Cave?</h1>
     </div>
 </div>
 
@@ -23,40 +23,30 @@
 <div class="aboutUs-sections">
 
     <div class="aboutUs-intro">
-        <h2>Ние сме одговор на прашањето: Што воопшто посакуваат мажите?</h2>
+        <h2 th:text="#{about.answer.title}">Ние сме одговор на прашањето: Што воопшто посакуваат мажите?</h2>
 
-        <p id="aboutUsShortIntro">
-            Парфем? Каиш?
-            Или нешто сосема друго, нешто интересно.
-            Без разлика дали е роденден, годишнина, празник
-            или едноставно сакате да израдувате некого,
-            кај нас ќе најдете нешто посебно. Имаме по нешто
-            за секој маж, за секој карактер.
+        <p id="aboutUsShortIntro" th:text="#{about.answer.content}">
+            Парфем? Каиш? Или нешто сосема друго, нешто интересно. Без разлика дали е роденден, годишнина, празник или едноставно сакате да израдувате некого, кај нас ќе најдете нешто посебно. Имаме по нешто за секој маж, за секој карактер.
         </p>
 
-        <button class="aboutUs-button">Погледнете сами</button>
+        <button class="aboutUs-button" th:text="#{about.answer.button}">Погледнете сами</button>
     </div>
 
     <div class="aboutUs-story">
-        <h2>Нашата приказна</h2>
+        <h2 th:text="#{about.story.title}">Нашата приказна</h2>
+        <p th:text="#{about.story.content.1}">Идејата се роди пред 20 години, кога никако не можев да смислам што да му подарам на моето момче за
+            роденден.</p>
 
-        <p>
-            Идејата се роди пред 20 години, кога никако не можев да смислам
-            што да му подарам на моето момче за роденден.
+        <p th:text="#{about.story.content.2}">Посакував да можам да појдам на едно место каде што веќе се разработени сите идеи, да разгледам и едноставно
+            да го изберам најдобриот подарок за него.</p>
 
-            Посакував да можам да појдам на едно место каде што веќе се
-            разработени сите идеи, да разгледам и едноставно да го изберам
-            најдобриот подарок за него.
+        <p th:text="#{about.story.content.3}">Такво место не најдов. Всушност, не го сретнав никаде во сите овие 20 години што поминаа од мојата прва
+            помисла.</p>
 
-            Такво место не најдов. Всушност, не го сретнав никаде во сите
-            овие 20 години што поминаа од мојата прва помисла.
+        <p th:text="#{about.story.content.4}">Па решив да ја преземам работата во свои раце и да го создадам токму тоа што тогаш го барав.</p>
 
-            Па решив да ја преземам работата во свои раце и да го создадам
-            токму тоа што тогаш го барав.
-
-            Момчето од приказната денес ми е сопруг. Подарокот беше успешен,
-            но идејата што следеше беше уште подобра.
-        </p>
+        <p th:text="#{about.story.content.5}">Момчето од приказната денес ми е сопруг. Подарокот беше успешен, но идејата што следеше беше уште
+            подобра.</p>
     </div>
 
 </div>
@@ -67,9 +57,9 @@
 <section class="meetTheTeam">
 
     <div class="meetTheTeam-intro">
-        <h2>Кој стои зад <span>Man Cave?</span></h2>
+        <h2 th:text="#{about.meetTheTeam.title}">Кој стои зад Man Cave?</h2>
 
-        <p>
+        <p th:text="#{about.meetTheTeam.content}">
             Некои луѓе сакаат да бидат пред камера.
             Ние повеќе сакаме да бидеме зад добриот подарок.
 
@@ -83,27 +73,27 @@
     <div class="teamContainer">
 
         <div class="teamCard">
-            <img src="image/meetTheTeamA.jpg" alt="Селекција на продукти">
-            <h3>Трагачот</h3>
-            <p>Се грижи сите продукти да се на висок стандард.</p>
+            <img src="image/meetTheTeamA.jpg" th:alt="#{about.meetTheTeam.scout.title}">
+            <h3 th:text="#{about.meetTheTeam.scout.title}">Трагачот</h3>
+            <p th:text="#{about.meetTheTeam.scout.text}">Се грижи сите продукти да се на висок стандард.</p>
         </div>
 
         <div class="teamCard">
-            <img src="image/meetTheTeamB.jpg" alt="Организатор">
-            <h3>Организаторот</h3>
-            <p>Се грижи секоја идеја да стигне до вистинскиот човек.</p>
+            <img src="image/meetTheTeamB.jpg" th:alt="#{about.meetTheTeam.organizer.title}">
+            <h3 th:text="#{about.meetTheTeam.organizer.title}">Организаторот</h3>
+            <p th:text="#{about.meetTheTeam.organizer.text}">Се грижи секоја идеја да стигне до вистинскиот човек.</p>
         </div>
 
         <div class="teamCard">
-            <img src="image/meetTheTeamC.jpg" alt="Креативец">
-            <h3>Креативецот</h3>
-            <p>Се грижи секоја идеја да изгледа онака како што ја замисливме.</p>
+            <img src="image/meetTheTeamC.jpg" th:alt="#{about.meetTheTeam.creative.title}">
+            <h3 th:text="#{about.meetTheTeam.creative.title}">Креативецот</h3>
+            <p th:text="#{about.meetTheTeam.creative.text}">Се грижи секоја идеја да изгледа онака како што ја замисливме.</p>
         </div>
 
         <div class="teamCard">
-            <img src="image/meetTheTeamD.jpg" alt="Економист">
-            <h3>Економистот</h3>
-            <p>Се грижи Man Cave да остане добра идеја и на хартија.</p>
+            <img src="image/meetTheTeamD.jpg" th:alt="#{about.meetTheTeam.economist.title}">
+            <h3 th:text="#{about.meetTheTeam.economist.title}">Економистот</h3>
+            <p th:text="#{about.meetTheTeam.economist.text}">Се грижи Man Cave да остане добра идеја и на хартија.</p>
         </div>
 
     </div>
@@ -113,10 +103,9 @@
 
 <!-- contact us -->
 <div class="aboutUs-contact">
-    <h2>Имате прашање?</h2>
-    <p>Слободно контактирајте нè.</p>
-
-    <a href="/contact" class="aboutUs-contact-button">Контактирајте нè</a>
+    <h2 th:text="#{about.contact.question.title}">Имате прашање?</h2>
+    <a href="/contact" class="aboutUs-contact-button"
+       th:text="#{about.contact.question.button}">Контактирајте нè</a>
 </div>
 <!-- end contact us -->
 </body>
