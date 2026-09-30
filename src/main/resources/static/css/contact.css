@@ -127,3 +127,9 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* MyFont has no Cyrillic letters, so Macedonian headings use the regular font */
+.contactPage:lang(mk) h1,
+.contactPage:lang(mk) h2 {
+    font-family: inherit;
+}
