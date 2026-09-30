@@ -4,13 +4,6 @@
     --news-on-dark: rgb(184, 105, 79);
 }
 
-@font-face {
-    font-family: 'MyFont';
-    src: url('../font/adelia.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
 body {
     background-color: var(--news-primary-bg);
     min-height: 100vh;
@@ -25,7 +18,6 @@ body {
 }
 
 .newsPage h1 {
-    font-family: 'MyFont', serif;
     text-align: center;
     color: var(--news-dark-bg);
     font-size: xxx-large;
@@ -86,7 +78,6 @@ body {
 }
 
 .newsArticleBody h3 {
-    font-family: 'MyFont', serif;
     color: var(--news-dark-bg);
     font-size: clamp(1.4rem, 2.5vw, 1.9rem);
     margin: 0 0 1rem;
@@ -123,10 +114,4 @@ body {
         padding-left: 1.25rem;
         padding-right: 1.25rem;
     }
-}
-
-/* MyFont has no Cyrillic letters, so Macedonian headings use the regular font */
-.newsPage:lang(mk) h1,
-.newsPage:lang(mk) h3 {
-    font-family: inherit;
 }
