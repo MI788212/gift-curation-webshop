@@ -99,8 +99,12 @@ body>div.heroAboutUs>div>h1>span {
 }
 
 .aboutUs-button {
+    display: inline-block;
+
     margin-top: 25px;
-    padding: 28px 180px;
+    padding: 20px 30px;
+
+    text-decoration: none;
 
     background: rgb(17, 34, 80);
     color: rgb(184, 105, 79);
