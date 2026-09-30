@@ -3,6 +3,7 @@
 }
 
 body {
+    background-color: rgb(202, 195, 191);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,7 +13,7 @@ body {
 }
 
 #body {
-    border: 0.3rem solid #ccc;
+    border: 0.3rem solid rgb(255 255 255);
     border-radius: 3rem;
     width: 70%;                  /* Зголемено од 70% за да има простор за големиот квадрат и текстот */
     max-width: 1400px;
@@ -28,9 +29,8 @@ body {
 
 /* 800x800 скалабилен контејнер за сликата */
 #product-profile {
-    border: 0.3rem solid #ccc;
+    border: 0.3rem solid #ffffff;
     border-radius: 2.5rem;
-
     /* Контрола на големината */
     width: 100%;
     max-width: 800px;            /* Максимална ширина 800px */
@@ -56,13 +56,20 @@ body {
 
 #products-functions {
     flex: 1 1 320px;
-    padding: 1rem;
+    /* Ист рамка и заобленост како кај #product-profile */
+    border: 0.3rem solid #ffffff;
+    border-radius: 2.5rem;
+
+    padding: 2rem;               /* Зголемен padding за подобар изглед во рамката */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
     font-family: Arial, sans-serif;
+
+    /* Овозможува дивот да ја истегне висината еднакво со #product-profile */
+    align-self: stretch;
 }
 
 #products-functions h1 {
@@ -70,6 +77,9 @@ body {
     font-size: 1.75rem;
     margin: 0;
     line-height: 1.3;
+}
+#products-functions > form > label > span, #products-functions > p.discription, #products-functions h1, #products-functions p {
+    color: rgb(17,34,80);
 }
 
 #products-functions .discription,
@@ -80,12 +90,19 @@ body {
     margin: 0;
 }
 
+/* Обострано порамнување на описот */
 #products-functions p {
-    text-align: center;
+    text-align: justify;         /* Обострано порамнет текст */
+    text-justify: inter-word;    /* Порамномерни растојанија меѓу зборовите */
     margin: 0;
-    color: #555;
-    line-height: 1.4;
+    line-height: 1.5;
+    width: 100%;                 /* Ја зафаќа целата ширина на картичката */
 }
+
+#products-functions > p.discription{
+    text-align: center;
+}
+
 
 /* Копчиња */
 .btn {
@@ -100,7 +117,11 @@ body {
 .btn:hover {
     background-color: #e2e6ea;
 }
-
+.btn-cart{
+    border: 0.2rem solid rgb(17,34,80);
+    border-radius: 1.5rem;
+    color: rgb(17,34,80);
+}
 /* Форма за кошничка */
 .cart-form {
     display: flex;
@@ -109,12 +130,12 @@ body {
     margin-top: 0.3rem;
 }
 
-.qty-input {
-    width: 6ch;
-    padding: 0.25em;
-    border: 0.0625rem solid #ccc;
-    border-radius: 0.25rem;
-}
+/*.qty-input {*/
+/*    width: 6ch;*/
+/*    padding: 0.25em;*/
+/*    border: 0.0625rem solid #ccc;*/
+/*    border-radius: 0.25rem;*/
+/*}*/
 
 /* Линк за назад */
 .back-link {
@@ -129,9 +150,79 @@ body {
     text-decoration: underline;
 }
 
-.btn-fav{
+.btn-fav {
+    border: 0.2rem solid rgb(17,34,80);
+    background-image: url("../images/product-images/button-images/royalBlueHeart.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 74%;
     min-height: 4em;
     min-width: 4em;
     border-radius: 10em;
-    background-color: red;
+}
+
+.btn-fav:hover{
+    border: 0.2rem solid rgb(17,34,80);
+    background-image: url("../images/product-images/button-images/whiteHeart.png");
+    background-color: rgb(17,34,80);
+    background-size: 76%;
+    min-height: 4em;
+    min-width: 4em;
+    border-radius: 10em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar {
+    height: 18vh;
+    width: 100%;
+    background-color: rgb(17, 34, 80);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem; /* Зголемен страничен простор за подобар баланс */
+    box-sizing: border-box;
+}
+
+.nav-logo a {
+    color: #ffffff;
+    font-size: 2.2rem; /* Поголемо лого */
+    font-weight: 500;
+    font-style: italic; /* Закосен текст */
+    font-family: 'Playfair Display', 'Georgia', 'Garamond', serif; /* Елегантен serif фонт */
+    text-decoration: none;
+    letter-spacing: 1px; /* Полесна читливост и стил */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 3rem; /* Зголемен простор помеѓу линковите (од 1.5rem на 3rem) */
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: rgb(224, 181, 143);
+    text-decoration: none;
+    font-size: 1.3rem; /* Поголем текст за менито */
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff; /* Прикажано бела боја на hover за поелегантен ефект */
 }
