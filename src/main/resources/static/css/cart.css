@@ -4,6 +4,13 @@
     --cart-on-dark: rgb(184, 105, 79);
 }
 
+@font-face {
+    font-family: 'MyFont';
+    src: url('../font/adelia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-color: var(--cart-primary-bg);
     min-height: 100vh;
@@ -18,6 +25,7 @@ body {
 }
 
 .cartPage h1 {
+    font-family: 'MyFont', serif;
     text-align: center;
     color: var(--cart-dark-bg);
     font-size: xxx-large;
@@ -111,6 +119,7 @@ body {
 }
 
 .cartSummary h3 {
+    font-family: 'MyFont', serif;
     font-size: clamp(1.4rem, 2.5vw, 2rem);
     margin: 0 0 1.25rem;
 }
