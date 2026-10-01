@@ -13,6 +13,9 @@ public class Product {
     private Long id;
     private String name;
     private BigDecimal price;
+    private String imageUrl;
+    private String description;
+
 
     public Long getId() {
         return id;
@@ -37,4 +40,12 @@ public class Product {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    public String getImageUrl() {return imageUrl;}
+
+    public void setImageUrl(String imageUrl) {this.imageUrl = imageUrl;}
+
+    public String getDescription() {return description;}
+
+    public void setDescription(String description) {this.description = description;}
 }

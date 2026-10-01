@@ -1,0 +1,136 @@
+body{
+    background-color: rgb(202, 195, 191);
+    min-height: 100vh;
+    margin: 0;
+}
+h1{
+    text-align: center;
+    color: rgb(17,34,80);
+    font-size: xxx-large;
+}
+h3{
+    font-size: 1.2rem;
+    color: rgb(17,34,80);
+}
+/* Container(wrapper) styles */
+#products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: center;
+    padding: 1.25rem;
+}
+
+/* Card styles */
+#products-container > div {
+    border: 0.0625rem solid #ccc; /* ~1px */
+    padding: 0.95rem; /* ~12px */
+
+    width: calc((100% - 3.75rem) / 4);
+    max-height: 25rem;
+    max-width: 19rem;
+    box-sizing: border-box;
+
+    text-align: center;
+    background-color: #fff;
+    border-radius: 2rem;
+
+    display: flex;
+    flex-direction: column;
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Ефект при поминување со курсорот (HOVER) */
+#products-container > div:hover {
+    /* Ја подигнува картичката за 6px нагоре и благо ја зголемува за 1.5% */
+    transform: translateY(-6px) scale(1.015);
+
+    /* Суптилна мека сенка */
+    box-shadow: 0 12px 24px rgba(17, 34, 80, 0.75);
+
+    /* Благо затемнување на рамката за дополнително истакнување */
+    border-color: #cccccc;
+}
+
+#products-container > div > a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Image styles */
+#products-container img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Го одржува 1:1 односот (квадрат) целосно скалабилно */
+    object-fit: cover;   /* Обезбедува сликата да го исполни квадратот без деформација */
+    border-radius: 2rem;
+}
+
+#products-container > div p {
+    font-weight: bold;
+    margin: 0; /* Отстранува стандардни маргини од параграфот */
+}
+
+.price-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-top: auto; /* Ја турка цената на дното на картичката */
+    padding-top: 0.625rem;
+    padding-bottom: 0.625rem;
+}
+.price-div > p{
+    color: rgb(17,34,80);
+    font-size: 1.2rem;
+}
+
+
+
+
+
+
+.navbar {
+    height: 18vh;
+    width: 100%;
+    background-color: rgb(17, 34, 80);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+    box-sizing: border-box;
+}
+
+.nav-logo a {
+    color: #ffffff;
+    font-size: 2.2rem;
+    font-weight: 500;
+    font-style: italic;
+    font-family: 'Playfair Display', 'Georgia', 'Garamond', serif;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: rgb(224, 181, 143);
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
