@@ -1,45 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{cart.title}">Your Cart</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1 th:text="#{cart.title}">Your Cart</h1>
+<main class="cartPage">
+    <h1 th:text="#{cart.title}">Your Cart</h1>
 
-<div th:if="${cart.cartEmpty}">
-    <p th:text="#{cart.cartEmpty}">Your cart is empty.</p>
-</div>
-
-<div th:unless="${cart.cartEmpty}">
-    <div th:each="entry : ${cart.items}">
-        <a th:href="@{/products/{id}(id=${entry.key})}" th:text="${cart.products.get(entry.key).name}">Name</a>
-        — qty: <span th:text="${entry.value}">1</span>
-
-        <form th:action="@{/cart/update}" method="post" style="display:inline">
-            <input type="hidden" name="productId" th:value="${entry.key}" />
-            <input type="number" name="quantity" th:value="${entry.value}" min="0" style="width:50px"
-                   onchange="this.form.submit()" />
-        </form>
-
-        — <span th:text="${cart.products.get(entry.key).price}">0.00</span>
-
-        <form th:action="@{/cart/remove}" method="post" style="display:inline">
-            <input type="hidden" name="productId" th:value="${entry.key}" />
-            <button type="submit" th:text="#{cart.remove}">Remove</button>
-        </form>
+    <div class="cartEmpty" th:if="${cart.cartEmpty}">
+        <p th:text="#{cart.cartEmpty}">Your cart is empty.</p>
     </div>
 
-    <h3 th:text="#{cart.total}">Total: <span th:text="${cart.total}">0.00</span></h3>
-    <a th:unless="${cart.cartEmpty}" th:href="@{/checkout}" th:text="#{cart.proceedToCheckout}">Proceed to checkout</a>
-</div>
+    <div th:unless="${cart.cartEmpty}">
+        <div class="cartItems">
+            <div class="cartItem" th:each="entry : ${cart.items}">
+                <a class="cartItemName" th:href="@{/products/{id}(id=${entry.key})}" th:text="${cart.products.get(entry.key).name}">Name</a>
 
-<a th:href="@{/products}" th:text="#{cart.continueShopping}">Continue shopping</a>
+                <form class="cartItemQty" th:action="@{/cart/update}" method="post">
+                    <input type="hidden" name="productId" th:value="${entry.key}" />
+                    <input type="number" name="quantity" th:value="${entry.value}" min="0"
+                           onchange="this.form.submit()" />
+                </form>
+
+                <span class="cartItemPrice" th:text="${#numbers.formatDecimal(cart.products.get(entry.key).price, 0, 0)} + ' ден.'">0 ден.</span>
+
+                <form class="cartItemRemove" th:action="@{/cart/remove}" method="post">
+                    <input type="hidden" name="productId" th:value="${entry.key}" />
+                    <button type="submit" th:text="#{cart.remove}">Remove</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="cartSummary">
+            <h3>
+                <span th:text="#{cart.total}">Total:</span>
+                <span th:text="${#numbers.formatDecimal(cart.total, 0, 0)} + ' ден.'">0 ден.</span>
+            </h3>
+            <a class="cartCheckoutBtn" th:unless="${cart.cartEmpty}" th:href="@{/checkout}" th:text="#{cart.proceedToCheckout}">Proceed to checkout</a>
+        </div>
+    </div>
+
+    <a class="cartContinueLink" th:href="@{/products}" th:text="#{cart.continueShopping}">Continue shopping</a>
+</main>
 
 </body>
 </html>
