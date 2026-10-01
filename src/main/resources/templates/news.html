@@ -1,26 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{news.title}">News</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/news.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1 th:text="#{news.title}">News</h1>
+<main class="newsPage">
+    <h1 th:text="#{news.title}">News</h1>
+    <p class="newsSubtitle" th:text="#{news.subtitle}">What's new at ManCave</p>
 
-<article>
-    <h3>New Summer Collection</h3>
-    <p>We just added a new line of products for summer!</p>
-</article>
+    <div class="newsList">
+        <article class="newsArticle">
+            <div class="newsArticleBanner">
+                <span class="newsTag" th:text="#{news.fall.tag}">Sale</span>
+                <time class="newsDate" datetime="2026-10-01" th:text="#{news.fall.date}">1 October 2026</time>
+            </div>
+            <div class="newsArticleBody">
+                <h3 th:text="#{news.fall.title}">Fall sale: up to 30% off</h3>
+                <p th:text="#{news.fall.text1}">To welcome the season we're taking up to 30% off selected gifts.</p>
+                <p th:text="#{news.fall.text2}">The sale runs until the end of October, while stock lasts.</p>
+                <a class="newsLink" th:href="@{/products}" th:text="#{news.fall.link}">Shop the sale</a>
+            </div>
+        </article>
 
-<article>
-    <h3>Store Update</h3>
-    <p>Thanks for shopping with us — here's what's new.</p>
-</article>
+        <article class="newsArticle">
+            <div class="newsArticleBanner">
+                <span class="newsTag" th:text="#{news.winter.tag}">Coming soon</span>
+                <time class="newsDate" datetime="2026-10-01" th:text="#{news.winter.date}">1 October 2026</time>
+            </div>
+            <div class="newsArticleBody">
+                <h3 th:text="#{news.winter.title}">Winter collection coming soon</h3>
+                <p th:text="#{news.winter.text1}">Colder days are on the way, and so is our winter collection.</p>
+                <p th:text="#{news.winter.text2}">The first pieces arrive in November.</p>
+                <a class="newsLink" th:href="@{/products}" th:text="#{news.winter.link}">See current products</a>
+            </div>
+        </article>
+    </div>
+</main>
 
 </body>
 </html>
