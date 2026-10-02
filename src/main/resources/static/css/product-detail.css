@@ -350,4 +350,10 @@ body {
 /* Копче за количина (Quantity Picker) */
 .quantity-picker {
     height: 2.3rem; /* Совпаѓање со висината на Add to cart */
+    width:50%;
+}
+
+.btn-add-to-cart {
+    width:50%;
+    flex-grow: 0;
 }
