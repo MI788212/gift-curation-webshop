@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${product.name}">Product Detail</title>
-    <link rel="stylesheet" th:href="@{/css/style.css?v=1}">
-    <link rel="stylesheet" th:href="@{/css/product-detailsStyle.css?v=2}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/favorites.css}">
+    <link rel="stylesheet" th:href="@{/css/product-detail.css}">
     <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/favorites.js}"></script>
 </head>
 <body>
 
@@ -50,7 +52,18 @@
 
 
             <form th:action="@{/cart/add}" method="post" class="cart-form">
-                <button type="submit" class="btn btn-cart" th:text="#{product-detail.addToCart}">Add to cart</button>
+                <input type="hidden" name="productId" th:value="${product.id}" />
+                <div class="cart-controls-wrapper">
+                    <!-- Копче за количина (- 1 +) -->
+                    <div class="quantity-picker">
+                        <button type="button" class="qty-btn btn-minus" onclick="decreaseQty(this)">-</button>
+                        <input type="number" name="quantity" class="qty-input" value="1" min="1" max="10" readonly />
+                        <button type="button" class="qty-btn btn-plus" onclick="increaseQty(this)">+</button>
+                    </div>
+
+                    <!-- Копче за додавање во кошничка -->
+                    <button type="submit" class="btn-add-to-cart">Add to cart</button>
+                </div>
             </form>
 
             <div class="bottom-navigation-links">

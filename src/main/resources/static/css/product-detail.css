@@ -346,3 +346,8 @@ body {
 .nav-links a:hover {
     color: #ffffff; /* Прикажано бела боја на hover за поелегантен ефект */
 }
+
+/* Копче за количина (Quantity Picker) */
+.quantity-picker {
+    height: 2.3rem; /* Совпаѓање со висината на Add to cart */
+}
