@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" th:href="@{/css/style.css}">
-
-<script th:src="@{/js/main.js}"></script>
-<meta charset="UTF-8">
 <body>
 
-<nav th:fragment="navbar">
-    <a th:href="@{/}" th:text="#{navbar.home}">Home</a>
-    <a th:href="@{/products}" th:text="#{navbar.products}">Products</a>
-    <a th:href="@{/cart}" th:text="#{navbar.cart}">Cart</a>
-    <a th:href="@{/about}" th:text="#{navbar.about}">About</a>
-    <a th:href="@{/news}" th:text="#{navbar.news}">News</a>
-    <a th:href="@{/contact}" th:text="#{navbar.contact}">Contact</a>
-    <a th:href="@{/favorites}" th:text="#{navbar.favorites}">Favorites</a>
-    <div class="lang-switcher">
-        <a th:href="@{''(lang=en)}">EN</a> |
-        <a th:href="@{''(lang=mk)}">MK</a>
-    </div>
-</nav>
+<header class="siteHeader" th:fragment="navbar">
+    <nav class="siteNav" th:aria-label="#{navbar.label}">
+        <a class="siteBrand" th:href="@{/}">Man Cave</a>
+
+        <ul class="siteNavLinks" id="siteNavLinks">
+            <li><a th:href="@{/}" th:text="#{navbar.home}">Home</a></li>
+            <li><a th:href="@{/products}" th:text="#{navbar.products}">Products</a></li>
+            <li><a th:href="@{/cart}" th:text="#{navbar.cart}">Cart</a></li>
+            <li><a th:href="@{/favorites}" th:text="#{navbar.favorites}">Favorites</a></li>
+            <li><a th:href="@{/about}" th:text="#{navbar.about}">About</a></li>
+            <li><a th:href="@{/news}" th:text="#{navbar.news}">News</a></li>
+            <li><a th:href="@{/contact}" th:text="#{navbar.contact}">Contact</a></li>
+        </ul>
+
+        <div class="langSwitcher" role="group" th:aria-label="#{navbar.language}">
+            <a th:href="@{''(lang=en)}" lang="en"
+               th:classappend="${#locale.language == 'en'} ? 'isActive'"
+               th:aria-current="${#locale.language == 'en'} ? 'true'">EN</a>
+            <a th:href="@{''(lang=mk)}" lang="mk"
+               th:classappend="${#locale.language == 'mk'} ? 'isActive'"
+               th:aria-current="${#locale.language == 'mk'} ? 'true'">MK</a>
+        </div>
+
+        <button class="siteNavToggle" type="button" aria-controls="siteNavLinks" aria-expanded="false"
+                th:aria-label="#{navbar.menu}">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+</header>
 
 </body>
 </html>

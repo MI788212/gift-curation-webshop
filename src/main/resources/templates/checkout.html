@@ -62,7 +62,7 @@
 
                 </div>
 
-                <p class="receipt-thank-you">
+                <p class="receipt-thank-you" th:text="#{checkout.thankYou}">
                     Ви благодариме за вашата нарачка!
                 </p>
 
@@ -73,7 +73,7 @@
         <!-- CUSTOMER INFORMATION -->
         <section class="checkout-form">
 
-            <h3>Податоци за нарачката</h3>
+            <h3 th:text="#{checkout.orderDetails}">Податоци за нарачката</h3>
 
             <form th:action="@{/checkout}" method="post">
 
@@ -110,6 +110,8 @@
     </div>
 
 </main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 

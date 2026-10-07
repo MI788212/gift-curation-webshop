@@ -11,18 +11,6 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<nav class="navbar">
-    <div class="nav-logo">
-        <a href="#">MyShop</a>
-    </div>
-    <ul class="nav-links">
-        <li><a href="#">Почетна</a></li>
-        <li><a href="#">Производи</a></li>
-        <li><a href="#">За нас</a></li>
-        <li><a href="#">Контакт</a></li>
-    </ul>
-</nav>
-
 <div id="body">
 
     <h1 th:text="#{products.title}">Products</h1>
@@ -31,7 +19,7 @@
 
         <div th:each="p : ${products}">
             <a th:href="@{/products/{id}(id=${p.id})}">
-                <img th:src="${p.imageUrl}" src="https://via.placeholder.com/200" alt="Product image">
+                <img th:src="${p.imageUrl}" src="https://via.placeholder.com/200" alt="Product image" th:alt="${p.name}">
                 <h3 th:text="${p.name}">Placeholder</h3>
             </a>
             <div class="price-div">
@@ -42,6 +30,8 @@
 
     </div>
 </div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

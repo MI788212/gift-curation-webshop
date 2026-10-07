@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -15,6 +16,8 @@ public class Product {
     private BigDecimal price;
     private String imageUrl;
     private String description;
+    @Column(length = 1000)
+    private String descriptionEn;
 
 
     public Long getId() {
@@ -48,4 +51,12 @@ public class Product {
     public String getDescription() {return description;}
 
     public void setDescription(String description) {this.description = description;}
+
+    public String getDescriptionEn() {return descriptionEn;}
+
+    public void setDescriptionEn(String descriptionEn) {this.descriptionEn = descriptionEn;}
+
+    public String descriptionFor(String language) {
+        return "en".equals(language) && descriptionEn != null ? descriptionEn : description;
+    }
 }
