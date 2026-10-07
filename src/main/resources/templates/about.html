@@ -29,7 +29,7 @@
             Парфем? Каиш? Или нешто сосема друго, нешто интересно. Без разлика дали е роденден, годишнина, празник или едноставно сакате да израдувате некого, кај нас ќе најдете нешто посебно. Имаме по нешто за секој маж, за секој карактер.
         </p>
 
-        <a th:href="@{/products}" class="aboutUs-button">Погледнете сами</a>
+        <a th:href="@{/products}" class="aboutUs-button" th:text="#{about.answer.button}">Погледнете сами</a>
     </div>
 
     <div class="aboutUs-story">
@@ -108,6 +108,9 @@
        th:text="#{about.contact.question.button}">Контактирајте нè</a>
 </div>
 <!-- end contact us -->
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+
 </body>
 
 </html>

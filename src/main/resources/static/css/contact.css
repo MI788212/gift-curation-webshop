@@ -113,6 +113,36 @@ body {
     background-color: var(--contact-sapphire);
 }
 
+.contactForm button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: var(--contact-navy);
+}
+
+.contactHoneypot {
+    display: none;
+}
+
+.contactFormNotice {
+    margin: 0 0 1rem;
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--contact-accent);
+    background-color: white;
+}
+
+.contactFormStatus {
+    margin: 1rem 0 0;
+    font-weight: bold;
+}
+
+.contactFormStatus:empty {
+    display: none;
+}
+
+.contactFormStatus[data-state="error"] {
+    color: rgb(150, 78, 58);
+}
+
 @media (max-width: 700px) {
     .contactGrid {
         grid-template-columns: 1fr;

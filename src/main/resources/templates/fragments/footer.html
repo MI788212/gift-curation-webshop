@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<footer class="siteFooter" th:fragment="footer">
+    <div class="siteFooterInner">
+        <div class="siteFooterAbout">
+            <a class="siteBrand" th:href="@{/}">Man Cave</a>
+            <p th:text="#{footer.tagline}">Interesting, practical and carefully selected gifts for men with their own style.</p>
+        </div>
+
+        <nav class="siteFooterCol" th:aria-label="#{footer.shop}">
+            <h3 th:text="#{footer.shop}">Shop</h3>
+            <ul>
+                <li><a th:href="@{/products}" th:text="#{navbar.products}">Products</a></li>
+                <li><a th:href="@{/cart}" th:text="#{navbar.cart}">Cart</a></li>
+                <li><a th:href="@{/favorites}" th:text="#{navbar.favorites}">Favorites</a></li>
+            </ul>
+        </nav>
+
+        <nav class="siteFooterCol" th:aria-label="#{footer.explore}">
+            <h3 th:text="#{footer.explore}">Explore</h3>
+            <ul>
+                <li><a th:href="@{/about}" th:text="#{navbar.about}">About</a></li>
+                <li><a th:href="@{/news}" th:text="#{navbar.news}">News</a></li>
+                <li><a th:href="@{/contact}" th:text="#{navbar.contact}">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="siteFooterCol">
+            <h3 th:text="#{footer.contact.title}">Have a question?</h3>
+            <p th:text="#{footer.contact.text}">Send us a message and we'll get back to you.</p>
+            <a class="siteFooterButton" th:href="@{/contact}" th:text="#{footer.contact.link}">Contact us</a>
+        </div>
+    </div>
+
+    <p class="siteFooterBottom">
+        &copy; <span th:text="${#dates.year(#dates.createNow())}">2026</span> Man Cave.
+        <span th:text="#{footer.rights}">All rights reserved.</span>
+    </p>
+</footer>
+
+</body>
+</html>
