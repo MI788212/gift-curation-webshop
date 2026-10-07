@@ -130,13 +130,6 @@ body {
     margin-top: 0.3rem;
 }
 
-/*.qty-input {*/
-/*    width: 6ch;*/
-/*    padding: 0.25em;*/
-/*    border: 0.0625rem solid #ccc;*/
-/*    border-radius: 0.25rem;*/
-/*}*/
-
 /* Линк за назад */
 .back-link {
     text-align: center;
@@ -298,62 +291,23 @@ body {
     font-weight: bold;
 }
 
-
-
-
-
-
-
-
-
-.navbar {
-    height: 18vh;
-    width: 100%;
-    background-color: rgb(17, 34, 80);
+#product-functions-functions{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    padding: 0 3rem; /* Зголемен страничен простор за подобар баланс */
-    box-sizing: border-box;
+}
+.quantity-picker{
+    height: 2.3rem;
 }
 
-.nav-logo a {
-    color: #ffffff;
-    font-size: 2.2rem; /* Поголемо лого */
-    font-weight: 500;
-    font-style: italic; /* Закосен текст */
-    font-family: 'Playfair Display', 'Georgia', 'Garamond', serif; /* Елегантен serif фонт */
-    text-decoration: none;
-    letter-spacing: 1px; /* Полесна читливост и стил */
+.fav-wrapper, .cart-form, .bottom-navigation-links{
+    margin: 0.75rem;
 }
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 3rem; /* Зголемен простор помеѓу линковите (од 1.5rem на 3rem) */
-    margin: 0;
-    padding: 0;
-}
 
-.nav-links a {
-    color: rgb(224, 181, 143);
-    text-decoration: none;
-    font-size: 1.3rem; /* Поголем текст за менито */
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
 
-.nav-links a:hover {
-    color: #ffffff; /* Прикажано бела боја на hover за поелегантен ефект */
-}
 
-/* Копче за количина (Quantity Picker) */
-.quantity-picker {
-    height: 2.3rem; /* Совпаѓање со висината на Add to cart */
-    width:50%;
-}
 
-.btn-add-to-cart {
-    width:50%;
-    flex-grow: 0;
-}
+
+
