@@ -1,5 +1,14 @@
--- English product descriptions, shown when the site is in English.
--- Runs after data.sql (see spring.sql.init.data-locations).
+-- Extra product data on top of data.sql (runs after it, see spring.sql.init.data-locations).
+
+-- Categories: the home page cards and the filter on the products page use these.
+UPDATE product SET category = 'GADGETS' WHERE name IN ('Multifunctional Multitool', 'Power Bank 20.000 mAh', 'Rechargeable LED Flashlight', 'Electrical beard trimmer', 'Magnetic phone holder', 'Bluetooth Key Finder', 'Screwdriver Set');
+UPDATE product SET category = 'ACCESSORIES' WHERE name IN ('Classic leather wallet', 'Mechanical wristwatch', 'Pocket knife', 'Cigar set', 'Whiskey Glass Set', 'Stainless steel bottle');
+UPDATE product SET category = 'LIFESTYLE' WHERE name IN ('Car cleaning set', 'Beard Grooming Set', 'BBQ Grill Tool Set', 'Miniature car model', 'Gym straps', 'Fishing Tackle Set', 'Outdoor Survival Kit');
+
+-- Featured products, shown in the "Featured products" section on the home page.
+UPDATE product SET featured = TRUE WHERE name IN ('Mechanical wristwatch', 'Whiskey Glass Set', 'Beard Grooming Set', 'Power Bank 20.000 mAh', 'Pocket knife');
+
+-- English descriptions, shown when the site is in English.
 UPDATE product SET description_en = 'A multifunctional tool made of black stainless steel. It includes pliers, a knife, scissors, screwdrivers, an opener and other handy tools. Folded length is 11 cm.' WHERE name = 'Multifunctional Multitool';
 UPDATE product SET description_en = 'A car detailing kit with microfibre cloths, brushes and sponges. Everything is packed in a compact black bag for easy storage and transport.' WHERE name = 'Car cleaning set';
 UPDATE product SET description_en = 'A 20,000 mAh power bank in a black case. It has USB and USB-C ports and supports fast charging for phones, headphones and other USB devices.' WHERE name = 'Power Bank 20.000 mAh';

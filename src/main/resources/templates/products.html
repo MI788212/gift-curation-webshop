@@ -15,6 +15,20 @@
 
     <h1 th:text="#{products.title}">Products</h1>
 
+    <nav class="categoryFilter" th:aria-label="#{products.filter.label}">
+        <a th:href="@{/products}" th:text="#{products.filter.all}"
+           th:classappend="${selectedCategory == null} ? 'isActive'"
+           th:aria-current="${selectedCategory == null} ? 'true'">All</a>
+        <a th:each="c : ${categories}" th:href="@{/products(category=${c.slug()})}"
+           th:text="${#messages.msg('category.' + c.slug())}"
+           th:classappend="${c == selectedCategory} ? 'isActive'"
+           th:aria-current="${c == selectedCategory} ? 'true'">Gadgets</a>
+    </nav>
+
+    <p class="productsEmpty" th:if="${#lists.isEmpty(products)}" th:text="#{products.empty}">
+        There are no products in this category yet.
+    </p>
+
     <div id="products-container">
 
         <div th:each="p : ${products}">
