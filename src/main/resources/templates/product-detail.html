@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <title th:text="${product.name}">Product Detail</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/product-detailsStyle.css}">
+    <link rel="stylesheet" th:href="@{/css/favorites.css}">
+    <link rel="stylesheet" th:href="@{/css/product-detail.css}">
     <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/favorites.js}"></script>
 </head>
 <body>
 
@@ -13,7 +15,7 @@
 
 <div id="body">
     <div id="product-profile">
-        <img th:src="${product.imageUrl}" src="https://via.placeholder.com/200" alt="Product image">
+        <img th:src="@{${product.imageUrl}}" src="https://via.placeholder.com/200" alt="Product image">
     </div>
 
 
@@ -23,32 +25,96 @@
             <p class="discription" th:text="${#numbers.formatDecimal(product.price, 0, 0)} + ' ден.'">0</p>
             <p th:text="${product.descriptionFor(#locale.language)}">Тука оди описот на продуктот...</p>
 
-            <button type="button" class="btn btn-fav"
-                    th:onclick="'addFavorite(' + ${product.id} + ')'">
-            </button>
+        <div id="product-functions-functions">
+            <div class="fav-wrapper">
+                <button type="button" id="favBtn"
+                        class="btn btn-fav"
+                        th:classappend="${isFavorite} ? 'active' : ''"
+                        th:onclick="'toggleFavorite(' + ${product.id} + ')'">
 
-            <script>
-                function addFavorite(id) {
-                    fetch('/favorites/add?productId=' + id, { method: 'POST' });
-                }
-            </script>
+                    <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </button>
+                <span id="favMessage" class="fav-message"></span>
+            </div>
 
-            <form th:action="@{/cart/add}" method="post" class="cart-form">
-                <input type="hidden" name="productId" th:value="${product.id}" />
-                <label><span th:text="#{product-detail.quantity}">Quantity</span>:
-                    <input type="number" name="quantity" value="1" min="1" class="qty-input" />
-                </label>
-                <button type="submit" class="btn btn-cart" th:text="#{product-detail.addToCart}">Add to cart</button>
-            </form>
 
-            <a th:href="@{/products}" class="back-link" th:text="#{product-detail.back}">Back to all products</a>
+                <form th:action="@{/cart/add}" method="post" class="cart-form">
+                    <input type="hidden" name="productId" th:value="${product.id}" />
+                    <div class="cart-controls-wrapper">
+                        <!-- Копче за количина (- 1 +) -->
+                        <div class="quantity-picker">
+                            <button type="button" class="qty-btn btn-minus" onclick="decreaseQty(this)">-</button>
+                            <input type="number" name="quantity" class="qty-input" value="1" min="1" max="10" readonly />
+                            <button type="button" class="qty-btn btn-plus" onclick="increaseQty(this)">+</button>
+                        </div>
+
+                        <!-- Копче за додавање во кошничка -->
+                        <button type="submit" class="btn-add-to-cart">Add to cart</button>
+                    </div>
+                </form>
+
+                <div class="bottom-navigation-links">
+                    <a th:href="@{/products}" class="back-link">All products</a>
+                    <span class="link-divider">|</span>
+                    <a th:href="@{/favorites}" class="back-link">My favorites</a>
+                </div>
+        </div>
     </div>
 
-</div>
-
-<div style="background-color: red" >
 
 </div>
+
+
+
+</div>
+
+<script>
+    let messageTimeout;
+
+    function toggleFavorite(id) {
+        const btn = document.getElementById('favBtn');
+        const msg = document.getElementById('favMessage');
+        const isFav = btn.classList.contains('active');
+
+        // 1. Спречуваме hover фликеринг веднаш по кликот
+        btn.classList.add('no-hover');
+
+        if (!isFav) {
+            fetch('/favorites/add?productId=' + id, { method: 'POST' });
+            btn.classList.add('active');
+            msg.textContent = "Added to favorites";
+        } else {
+            fetch('/favorites/remove-ajax?productId=' + id, { method: 'POST' });
+            btn.classList.remove('active');
+            msg.textContent = "Removed from favorites";
+        }
+
+        // 2. Приказ на пораката
+        msg.classList.remove('fade-out');
+        msg.classList.add('show');
+
+        clearTimeout(messageTimeout);
+        messageTimeout = setTimeout(() => {
+            msg.classList.add('fade-out');
+            setTimeout(() => {
+                msg.classList.remove('show', 'fade-out');
+            }, 500);
+        }, 2500);
+    }
+
+    // 3. Кога корисникот ќе го тргне курсорот надвор од копчето, го враќаме hover ефектот за наредниот пат
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('favBtn');
+        if (btn) {
+            btn.addEventListener('mouseleave', () => {
+                btn.classList.remove('no-hover');
+            });
+        }
+    });
+</script>
+
 
 <div th:replace="~{fragments/footer :: footer}"></div>
 

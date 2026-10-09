@@ -1,10 +1,14 @@
 package com.example.demo.favorites;
 
 import com.example.demo.model.Product;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+@Component
+@SessionScope
 public class Favorites {
 
     private final Map<Long, Product> products = new LinkedHashMap<>();
@@ -27,5 +31,9 @@ public class Favorites {
 
     public void clear() {
         products.clear();
+    }
+
+    public boolean containsProduct(Long productId) {
+        return products.containsKey(productId);
     }
 }

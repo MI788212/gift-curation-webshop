@@ -31,21 +31,59 @@
 
     <div id="products-container">
 
-        <div th:each="p : ${products}">
-            <a th:href="@{/products/{id}(id=${p.id})}">
+        <div class="product-card" th:each="p : ${products}">
+
+            <!-- Копче за додавање во омилени (срце во горниот десен агол) -->
+            <form class="add-fav-form">
+                <button type="button"
+                        class="btn-add-fav"
+                        th:classappend="${favoriteProductIds != null and favoriteProductIds.contains(p.id)} ? 'active' : ''"
+                        th:onclick="'toggleProductFavorite(event, this, ' + ${p.id} + ')'"
+                        onmouseleave="this.classList.remove('no-hover')"
+                        title="Омилени">
+                    <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Линк до детали за продуктот -->
+            <a th:href="@{/products/{id}(id=${p.id})}" class="product-link">
                 <img th:src="${p.imageUrl}" src="https://via.placeholder.com/200" alt="Product image" th:alt="${p.name}">
                 <h3 th:text="${p.name}">Placeholder</h3>
             </a>
+
+            <!-- Цена -->
             <div class="price-div">
                 <p th:text="${#numbers.formatDecimal(p.price, 0, 0)}">0</p>
                 <p>&nbsp;ден.</p>
             </div>
+
         </div>
 
     </div>
 </div>
 
 <div th:replace="~{fragments/footer :: footer}"></div>
+
+<script>
+    function toggleProductFavorite(event, btnElement, id) {
+        if (event) event.preventDefault();
+
+        const isFav = btnElement.classList.contains('active');
+
+        // 1. Спречуваме hover фликеринг веднаш по кликот
+        btnElement.classList.add('no-hover');
+
+        if (!isFav) {
+            fetch('/favorites/add?productId=' + id, { method: 'POST' });
+            btnElement.classList.add('active');
+        } else {
+            fetch('/favorites/remove-ajax?productId=' + id, { method: 'POST' });
+            btnElement.classList.remove('active');
+        }
+    }
+</script>
 
 </body>
 </html>

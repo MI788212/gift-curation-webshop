@@ -130,13 +130,6 @@ body {
     margin-top: 0.3rem;
 }
 
-/*.qty-input {*/
-/*    width: 6ch;*/
-/*    padding: 0.25em;*/
-/*    border: 0.0625rem solid #ccc;*/
-/*    border-radius: 0.25rem;*/
-/*}*/
-
 /* Линк за назад */
 .back-link {
     text-align: center;
@@ -150,79 +143,171 @@ body {
     text-decoration: underline;
 }
 
+/* Основен изглед кога НЕ Е омилено:
+   - Позадина: rgb(17,34,80)
+   - Икона (срце): бела (#ffffff)
+*/
 .btn-fav {
-    border: 0.2rem solid rgb(17,34,80);
-    background-image: url("../images/product-images/button-images/royalBlueHeart.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 74%;
-    min-height: 4em;
-    min-width: 4em;
-    border-radius: 10em;
-}
-
-.btn-fav:hover{
-    border: 0.2rem solid rgb(17,34,80);
-    background-image: url("../images/product-images/button-images/whiteHeart.png");
-    background-color: rgb(17,34,80);
-    background-size: 76%;
-    min-height: 4em;
-    min-width: 4em;
-    border-radius: 10em;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.navbar {
-    height: 18vh;
-    width: 100%;
     background-color: rgb(17, 34, 80);
+    border: 0.2rem solid rgb(17, 34, 80);
+    min-height: 4em;
+    min-width: 4em;
+    border-radius: 10em;
+
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 3rem; /* Зголемен страничен простор за подобар баланс */
-    box-sizing: border-box;
-}
+    justify-content: center;
 
-.nav-logo a {
-    color: #ffffff;
-    font-size: 2.2rem; /* Поголемо лого */
-    font-weight: 500;
-    font-style: italic; /* Закосен текст */
-    font-family: 'Playfair Display', 'Georgia', 'Garamond', serif; /* Елегантен serif фонт */
-    text-decoration: none;
-    letter-spacing: 1px; /* Полесна читливост и стил */
-}
-
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 3rem; /* Зголемен простор помеѓу линковите (од 1.5rem на 3rem) */
-    margin: 0;
+    cursor: pointer;
+    transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
     padding: 0;
 }
 
-.nav-links a {
-    color: rgb(224, 181, 143);
-    text-decoration: none;
-    font-size: 1.3rem; /* Поголем текст за менито */
-    font-weight: 500;
-    transition: color 0.3s ease;
+/* SVG срце икона */
+.btn-fav .heart-icon {
+    width: 2rem;
+    height: 2rem;
+    fill: #ffffff; /* Бела боја на срцето во почетна состојба */
+    transition: fill 0.25s ease, transform 0.2s ease;
 }
 
-.nav-links a:hover {
-    color: #ffffff; /* Прикажано бела боја на hover за поелегантен ефект */
+/* Hover кога уште НЕ Е омилено (Се обраќаат боите):
+   - Позадина: бела (#ffffff)
+   - Икона (срце): rgb(17,34,80)
+*/
+.btn-fav:hover {
+    background-color: #ffffff;
+    border-color: rgb(17, 34, 80);
 }
+
+.btn-fav:hover .heart-icon {
+    fill: rgb(17, 34, 80);
+}
+
+/* Активна состојба - КОГА Е ДОДАДЕНО во омилени (.active):
+   - Позадина: бела (#ffffff)
+   - Икона (срце): rgb(17,34,80)
+*/
+.btn-fav.active {
+    background-color: #ffffff;
+    border-color: rgb(17, 34, 80);
+}
+
+.btn-fav.active .heart-icon {
+    fill: rgb(17, 34, 80);
+}
+
+/* Reverse Hover - Кога ВЕЌЕ Е омилено, при hover ги покажува почетните бои (најава за враќање):
+   - Позадина: rgb(17,34,80)
+   - Икона (срце): бела (#ffffff)
+*/
+.btn-fav.active:hover {
+    background-color: rgb(17, 34, 80);
+    border-color: rgb(17, 34, 80);
+}
+
+.btn-fav.active:hover .heart-icon {
+    fill: #ffffff;
+}
+
+/* Контејнер и Апсолутно позиционирана порака десно */
+.fav-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fav-message {
+    display: none;
+    position: absolute;
+    left: calc(100% + 0.75rem);
+    white-space: nowrap;
+
+    background-color: #ffffff;
+    border: 1px solid lightgrey;
+    border-radius: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+    color: rgb(17, 34, 80);
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 10;
+}
+
+.fav-message.show {
+    display: block;
+    opacity: 1;
+}
+
+.fav-message.fade-out {
+    opacity: 0;
+}
+
+/* Кога има класа .no-hover, копчето ја задржува точната моментална боја и ги игнорира hover ефектите */
+.btn-fav.no-hover {
+    background-color: rgb(17, 34, 80) !important;
+    border-color: rgb(17, 34, 80) !important;
+}
+
+.btn-fav.no-hover .heart-icon {
+    fill: #ffffff !important;
+    transform: none !important;
+}
+
+.btn-fav.active.no-hover {
+    background-color: #ffffff !important;
+    border-color: rgb(17, 34, 80) !important;
+}
+
+.btn-fav.active.no-hover .heart-icon {
+    fill: rgb(17, 34, 80) !important;
+    transform: none !important;
+}
+
+.bottom-navigation-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.bottom-navigation-links .back-link {
+    text-decoration: none;
+    color: #0056b3; /* или бојата што ја користиш за линкови */
+    font-weight: 500;
+}
+
+.bottom-navigation-links .back-link:hover {
+    text-decoration: underline;
+}
+
+.bottom-navigation-links .link-divider {
+    color: #888888;
+    font-weight: bold;
+}
+
+#product-functions-functions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.quantity-picker{
+    height: 2.3rem;
+}
+
+.fav-wrapper, .cart-form, .bottom-navigation-links{
+    margin: 0.75rem;
+}
+
+
+
+
+
+
+

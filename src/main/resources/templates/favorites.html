@@ -1,31 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{favorites.title}">Favorites</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style.css?}">
+    <link rel="stylesheet" th:href="@{/css/favorites.css?}">
     <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/favorites.js}"></script>
 </head>
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1 th:text="#{favorites.title}">Favorites</h1>
+<div id="body">
 
-<div th:if="${favorites.favoritesEmpty}">
-    <p th:text="#{favorites.favoritesEmpty}">You have added nothing to favorites.</p>
-</div>
+    <h1 th:text="#{favorites.title}">Favourites</h1>
 
-<div th:unless="${favorites.favoritesEmpty}">
-    <div th:each="entry : ${favorites.products}">
-        <a th:href="@{/products/{id}(id=${entry.key})}" th:text="${favorites.products.get(entry.key).name}">Name</a>
-<!--najdi nacin da dodades link do product-detail na soodvetniot produkt-->
-        — <span th:text="${favorites.products.get(entry.key).price}">0.00</span>
+    <div class="subtitle-link-container">
+        <a th:href="@{/products}" class="back-link">Back to all products</a>
+    </div>
 
-        <form th:action="@{/favorites/remove}" method="post" style="display:inline">
-            <input type="hidden" name="productId" th:value="${entry.key}" />
-            <button type="submit" th:text="#{favorites.remove}">Remove</button>
-        </form>
+    <!-- Кога нема додадено омилени производи -->
+    <div th:if="${favorites.favoritesEmpty}" class="empty-favorites">
+        <p th:text="#{favorites.favoritesEmpty}">You have added nothing to favorites.</p>
+    </div>
+
+    <!-- Кога има омилени производи -->
+    <div id="favorites-container" th:unless="${favorites.favoritesEmpty}">
+
+        <div class="favorite-card" th:each="entry : ${favorites.products}">
+
+            <!-- Копче за отстранување од омилени (срце во горниот десен агол) -->
+            <form th:action="@{/favorites/remove}" method="post" class="remove-fav-form">
+                <input type="hidden" name="productId" th:value="${entry.key}" />
+                <button type="submit" class="btn-remove-fav" title="Отстрани од омилени">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="heart-icon">
+                        <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Линк до product-detail за соодветниот продукт -->
+            <a th:href="@{/products/{id}(id=${entry.key})}" class="product-link">
+                <img th:src="@{${entry.value.imageUrl}}" src="https://via.placeholder.com/200" alt="Product image">
+                <h3 th:text="${entry.value.name}">Name</h3>
+            </a>
+
+            <!-- Приказ на цена -->
+            <div class="price-div">
+                <p th:text="${#numbers.formatDecimal(entry.value.price, 0, 0)}">0</p>
+                <p>&nbsp;ден.</p>
+            </div>
+
+            <!-- Функција Додај во кошница (Add to Cart) -->
+            <form th:action="@{/cart/add}" method="post" class="add-to-cart-form">
+                <input type="hidden" name="productId" th:value="${entry.key}" />
+
+                <div class="cart-controls-wrapper">
+                    <!-- Копче за количина (- 1 +) -->
+                    <div class="quantity-picker">
+                        <button type="button" class="qty-btn btn-minus" onclick="decreaseQty(this)">-</button>
+                        <input type="number" name="quantity" class="qty-input" value="1" min="1" max="10" readonly />
+                        <button type="button" class="qty-btn btn-plus" onclick="increaseQty(this)">+</button>
+                    </div>
+
+                    <!-- Копче за додавање во кошничка -->
+                    <button type="submit" class="btn-add-to-cart">Add to cart</button>
+                </div>
+            </form>
+
+        </div>
+
     </div>
 
 </div>

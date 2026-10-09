@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,7 +21,7 @@ import java.util.stream.Collectors;
 public class FavoritesController {
 
     private static final String COOKIE_NAME = "favorites";
-    private static final int MAX_AGE_SECONDS = 60 * 60 * 24 * 365; // 365 days
+    private static final int MAX_AGE_SECONDS = 60 * 60 * 24 * 365; // 365 дена
 
     private final ProductRepository productRepository;
 
@@ -51,6 +50,7 @@ public class FavoritesController {
         response.addCookie(cookie);
     }
 
+    // 1. Повик од AJAX (product-detail.html) - Додавање
     @PostMapping("/favorites/add")
     @ResponseBody
     public ResponseEntity<Void> addToCart(@RequestParam Long productId,
@@ -64,6 +64,7 @@ public class FavoritesController {
         return ResponseEntity.noContent().build();
     }
 
+    // 2. Повик од HTML Форма (favorites.html) - Бришење со пренасочување (Без @ResponseBody)
     @PostMapping("/favorites/remove")
     public String removeFromCart(@RequestParam Long productId,
                                  HttpServletRequest request,
@@ -72,6 +73,18 @@ public class FavoritesController {
         ids.remove(productId);
         writeFavoriteIds(response, ids);
         return "redirect:/favorites";
+    }
+
+    // 3. Повик од AJAX (product-detail.html) - Бришење без пренасочување
+    @PostMapping("/favorites/remove-ajax")
+    @ResponseBody
+    public ResponseEntity<Void> removeFromCartAjax(@RequestParam Long productId,
+                                                   HttpServletRequest request,
+                                                   HttpServletResponse response) {
+        Set<Long> ids = readFavoriteIds(request);
+        ids.remove(productId);
+        writeFavoriteIds(response, ids);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/favorites")
