@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="#{products.title}">Products</title>
-    <link rel="stylesheet" th:href="@{/css/style.css?v=1}">
-    <link rel="stylesheet" th:href="@{/css/products.css?v=1}">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/products.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
 <body>
@@ -14,6 +14,20 @@
 <div id="body">
 
     <h1 th:text="#{products.title}">Products</h1>
+
+    <nav class="categoryFilter" th:aria-label="#{products.filter.label}">
+        <a th:href="@{/products}" th:text="#{products.filter.all}"
+           th:classappend="${selectedCategory == null} ? 'isActive'"
+           th:aria-current="${selectedCategory == null} ? 'true'">All</a>
+        <a th:each="c : ${categories}" th:href="@{/products(category=${c.slug()})}"
+           th:text="${#messages.msg('category.' + c.slug())}"
+           th:classappend="${c == selectedCategory} ? 'isActive'"
+           th:aria-current="${c == selectedCategory} ? 'true'">Gadgets</a>
+    </nav>
+
+    <p class="productsEmpty" th:if="${#lists.isEmpty(products)}" th:text="#{products.empty}">
+        There are no products in this category yet.
+    </p>
 
     <div id="products-container">
 
@@ -35,7 +49,7 @@
 
             <!-- Линк до детали за продуктот -->
             <a th:href="@{/products/{id}(id=${p.id})}" class="product-link">
-                <img th:src="${p.imageUrl}" src="https://via.placeholder.com/200" alt="Product image">
+                <img th:src="${p.imageUrl}" src="https://via.placeholder.com/200" alt="Product image" th:alt="${p.name}">
                 <h3 th:text="${p.name}">Placeholder</h3>
             </a>
 
@@ -49,6 +63,8 @@
 
     </div>
 </div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 <script>
     function toggleProductFavorite(event, btnElement, id) {

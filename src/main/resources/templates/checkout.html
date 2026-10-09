@@ -1,35 +1,118 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title th:text="#{checkout.title}">Checkout</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/checkout.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
+
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1 th:text="#{checkout.title}">Checkout</h1>
+<main class="checkout-page">
 
-<h3 th:text="#{checkout.orderSummary}">Order summary</h3>
-<div th:each="entry : ${cart.items}">
-    <span th:text="${cart.products.get(entry.key).name}">Name</span>
-    — qty: <span th:text="${entry.value}">1</span>
-</div>
-<h3 th:text="#{checkout.total}">Total: <span th:text="${cart.total}">0.00</span></h3>
+    <h1 th:text="#{checkout.title}">Нарачка</h1>
 
-<form th:action="@{/checkout}" method="post">
-    <label><span  th:text="#{checkout.name}">Name</span>:
-        <input type="text" name="customerName" required />
-    </label>
-    <br/>
-    <label><span th:text="#{checkout.email}">Email</span>:
-        <input type="email" name="customerEmail" required />
-    </label>
-    <br/>
-    <button type="submit" th:text="#{checkout.placeOrder}">Place order</button>
-</form>
+    <div class="checkout-container">
+
+        <!-- ORDER SUMMARY -->
+        <section class="checkout-summary">
+
+            <div class="receipt">
+
+                <h3>MAN CAVE</h3>
+
+                <p class="receipt-title" th:text="#{checkout.orderSummary}">
+                    вашата нарачка
+                </p>
+
+                <div class="receipt-line"></div>
+
+                <div class="checkout-products">
+
+                    <div class="checkout-product" th:each="entry : ${cart.items}">
+
+                            <span class="checkout-product-name" th:text="${cart.products.get(entry.key).name}">
+                                Product name
+                            </span>
+
+                        <span class="checkout-product-quantity">
+                                x<span th:text="${entry.value}">1</span>
+                            </span>
+
+                    </div>
+
+                </div>
+
+                <div class="receipt-line"></div>
+
+                <div class="checkout-total">
+
+                        <span th:text="#{checkout.total}">
+                            Вкупно
+                        </span>
+
+                    <span th:text="${cart.total}">
+                            0.00
+                        </span>
+
+                </div>
+
+                <p class="receipt-thank-you" th:text="#{checkout.thankYou}">
+                    Ви благодариме за вашата нарачка!
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- CUSTOMER INFORMATION -->
+        <section class="checkout-form">
+
+            <h3 th:text="#{checkout.orderDetails}">Податоци за нарачката</h3>
+
+            <form th:action="@{/checkout}" method="post">
+
+                <div class="checkout-field">
+
+                    <label for="customerName" th:text="#{checkout.name}">
+                        Име
+                    </label>
+
+                    <input type="text" id="customerName" name="customerName" required />
+
+                </div>
+
+
+                <div class="checkout-field">
+
+                    <label for="customerEmail" th:text="#{checkout.email}">
+                        Email адреса
+                    </label>
+
+                    <input type="email" id="customerEmail" name="customerEmail" required />
+
+                </div>
+
+
+                <button type="submit" class="checkout-button" th:text="#{checkout.placeOrder}">
+                    Place order
+                </button>
+
+            </form>
+
+        </section>
+
+    </div>
+
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
+
 </html>

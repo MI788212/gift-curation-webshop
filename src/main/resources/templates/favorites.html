@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="mk" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{favorites.title}">Favorites</title>
-    <link rel="stylesheet" th:href="@{/css/style.css?v=1}">
-    <link rel="stylesheet" th:href="@{/css/favorites.css?v=1}">
+    <link rel="stylesheet" th:href="@{/css/style.css?}">
+    <link rel="stylesheet" th:href="@{/css/favorites.css?}">
     <script th:src="@{/js/main.js}"></script>
     <script th:src="@{/js/favorites.js}"></script>
 </head>
@@ -74,6 +74,8 @@
     </div>
 
 </div>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

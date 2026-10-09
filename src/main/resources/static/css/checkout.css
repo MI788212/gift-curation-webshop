@@ -1,0 +1,259 @@
+/* checkout page */
+
+.checkout-page {
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto;
+}
+
+.checkout-page h1 {
+    text-align: end;
+    color: rgb(17, 34, 80);
+    margin-bottom: 45px;
+}
+
+.checkout-page {
+    position: relative;
+    width: 90%;
+    max-width: 1100px;
+    margin: 60px auto;
+}
+
+.checkout-page::before {
+    content: "";
+
+    position: absolute;
+
+    width: 700px;
+    height: 700px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -40%);
+
+    background-image: url("../image/checkoutDecoration.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    opacity: 0.2;
+
+    z-index: -1;
+}
+
+.checkout-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    align-items: start;
+}
+
+/* ORDER SUMMARY */
+
+.checkout-page h1 {
+    text-align: center;
+    color: rgb(17, 34, 80);
+
+    font-size: 100px;
+    margin-bottom: 55px;
+    text-transform: uppercase;
+}
+
+.checkout-summary {
+    display: flex;
+    justify-content: center;
+}
+
+.receipt {
+    width: 100%;
+    max-width: 400px;
+
+    background: #f8f5ef;
+    padding: 35px 30px;
+
+    color: rgb(17, 34, 80);
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+
+    position: relative;
+
+    clip-path: polygon(0 0,
+    100% 0,
+    100% 96%,
+    96% 100%,
+    92% 96%,
+    88% 100%,
+    84% 96%,
+    80% 100%,
+    76% 96%,
+    72% 100%,
+    68% 96%,
+    64% 100%,
+    60% 96%,
+    56% 100%,
+    52% 96%,
+    48% 100%,
+    44% 96%,
+    40% 100%,
+    36% 96%,
+    32% 100%,
+    28% 96%,
+    24% 100%,
+    20% 96%,
+    16% 100%,
+    12% 96%,
+    8% 100%,
+    4% 96%,
+    0 100%);
+}
+
+/* RECEIPT HEADER */
+
+.receipt h3 {
+    text-align: center;
+
+    margin: 0;
+
+    font-size: 26px;
+    letter-spacing: 3px;
+}
+
+.receipt-title {
+    text-align: center;
+
+    margin: 8px 0 20px;
+
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+
+/* DOTTED LINES */
+
+.receipt-line {
+    border-top: 2px dotted rgb(17, 34, 80);
+
+    margin: 20px 0;
+}
+
+
+/* PRODUCTS */
+
+.checkout-product {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 8px 0;
+
+    font-size: 15px;
+}
+
+.checkout-product-name {
+    max-width: 75%;
+}
+
+.checkout-product-quantity {
+    white-space: nowrap;
+}
+
+
+/* TOTAL */
+
+.checkout-total {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    margin-top: 10px;
+}
+
+.checkout-total span:last-child {
+    color: rgb(184, 105, 79);
+}
+
+
+/* THANK YOU */
+
+.receipt-thank-you {
+    text-align: center;
+
+    margin: 30px 0 0;
+
+    font-size: 13px;
+
+    font-style: italic;
+}
+
+/* FORM */
+
+.checkout-form {
+    background: #f8f5ef;
+    padding: 30px;
+    border-radius: 12px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.checkout-form h3 {
+    margin-top: 0;
+    color: rgb(17, 34, 80);
+    font-size: 22px;
+}
+
+.checkout-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.checkout-field label {
+    margin-bottom: 8px;
+    color: rgb(17, 34, 80);
+    font-weight: bold;
+}
+
+.checkout-field input {
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.checkout-field input:focus {
+    outline: none;
+    border-color: rgb(184, 105, 79);
+}
+
+
+/* BUTTON */
+
+.checkout-button {
+    width: 100%;
+    padding: 14px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: rgb(184, 105, 79);
+    color: #f8f5ef;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.checkout-button:hover {
+    opacity: 0.85;
+}
+
+body>main>div>section.checkout-summary>div>h3 {
+    font-family: 'MyFont';
+}
+
+/* end checkout page */

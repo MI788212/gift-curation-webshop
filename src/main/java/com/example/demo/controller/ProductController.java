@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Category;
 import com.example.demo.model.Product;
 import com.example.demo.repository.ProductRepository;
 import jakarta.servlet.http.Cookie;
@@ -7,6 +8,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Arrays;
@@ -24,6 +27,19 @@ public class ProductController {
     public String list(Model model) {
         model.addAttribute("products", repo.findAll());
         return "products";
+    }
+
+    @GetMapping(value = "/products", params = "category")
+    public String listByCategory(@RequestParam String category, Model model) {
+        Category selected = Category.fromSlug(category).orElse(null);
+        model.addAttribute("selectedCategory", selected);
+        model.addAttribute("products", selected == null ? repo.findAll() : repo.findByCategory(selected));
+        return "products";
+    }
+
+    @ModelAttribute("categories")
+    public Category[] categories() {
+        return Category.values();
     }
 
     @GetMapping("/products/{id}")

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title th:text="#{order-confirmation.thankYou}">Order Confirmation</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/order-confirmation.css}">
     <script th:src="@{/js/main.js}"></script>
 </head>
 <body>
@@ -15,13 +16,15 @@
 
 <div th:each="item : ${order.items}">
     <span th:text="${item.product.name}">Product</span>
-    — qty: <span th:text="${item.quantity}">1</span>
+    — <span th:text="#{order-confirmation.quantity}">Quantity:</span> <span th:text="${item.quantity}">1</span>
     — <span th:text="${item.lineTotal}">0.00</span>
 </div>
 
-<h3>Total: <span th:text="${order.total}">0.00</span></h3>
+<h3><span th:text="#{order-confirmation.total}">Total:</span> <span th:text="${order.total}">0.00</span></h3>
 
 <a th:href="@{/products}" th:text="#{order-confirmation.continueShopping}">Continue shopping</a>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

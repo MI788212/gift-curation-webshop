@@ -1,18 +1,71 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" th:lang="${#locale.language}" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title th:text="#{contact.title}">Contact</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/contact.css}">
     <script th:src="@{/js/main.js}"></script>
+    <script th:src="@{/js/contact.js}" defer></script>
 </head>
 <body>
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1 th:text="#{contact.title}">Contact Us</h1>
-<p><span th:text="#{contact.email}">Email:</span> contact@example.com</p>
-<p><span th:text="#{contact.phone}">Phone:</span> 000-000-0000</p>
+<main class="contactPage">
+    <header class="contactHero">
+        <h1 th:text="#{contact.title}">Contact Us</h1>
+        <p th:text="#{contact.subtitle}">We'd love to hear from you.</p>
+    </header>
+
+    <div class="contactGrid">
+        <section class="contactInfo">
+            <h2 th:text="#{contact.info.title}">Get in touch</h2>
+            <p class="contactInfoRow">
+                <span class="contactInfoLabel" th:text="#{contact.email}">Email:</span>
+                <span>contact@example.com</span>
+            </p>
+            <p class="contactInfoRow">
+                <span class="contactInfoLabel" th:text="#{contact.phone}">Phone:</span>
+                <span>000-000-0000</span>
+            </p>
+        </section>
+
+        <section class="contactFormBox">
+            <h2 th:text="#{contact.form.title}">Send us a message</h2>
+            <p class="contactFormNotice" th:if="${#strings.isEmpty(contactFormEndpoint)}"
+               th:text="#{contact.form.notConfigured}">The contact form isn't connected to an email address yet.</p>
+
+            <form class="contactForm" th:action="${contactFormEndpoint}" method="post"
+                  th:data-sending="#{contact.form.sending}"
+                  th:data-success="#{contact.form.success}"
+                  th:data-error="#{contact.form.error}">
+                <input type="hidden" name="_subject" value="Man Cave: new message from the contact form">
+
+                <!-- spam trap: people never see or fill this, bots do, and Formspree drops those -->
+                <div class="contactHoneypot" aria-hidden="true">
+                    <label for="contact-gotcha">Leave this empty</label>
+                    <input type="text" id="contact-gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label for="contact-name" th:text="#{contact.form.name}">Name</label>
+                <input type="text" id="contact-name" name="name" autocomplete="name" required>
+
+                <label for="contact-email" th:text="#{contact.form.email}">Email</label>
+                <input type="email" id="contact-email" name="email" autocomplete="email" required>
+
+                <label for="contact-message" th:text="#{contact.form.message}">Message</label>
+                <textarea id="contact-message" name="message" rows="5" required></textarea>
+
+                <button type="submit" th:text="#{contact.form.submit}"
+                        th:disabled="${#strings.isEmpty(contactFormEndpoint)}">Send</button>
+                <p class="contactFormStatus" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    </div>
+</main>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>

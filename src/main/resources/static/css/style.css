@@ -1,1 +1,258 @@
+:root {
+    --site-navy: rgb(17, 34, 80);
+    --site-greige: rgb(202, 195, 191);
+    --site-terracotta: rgb(184, 105, 79);
+}
 
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Some page stylesheets set a colour on every element (*), so header and
+   footer children inherit their colours explicitly. */
+.siteHeader *,
+.siteFooter * {
+    box-sizing: border-box;
+    color: inherit;
+}
+
+.siteHeader .siteBrand,
+.siteFooter .siteBrand {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-size: 1.7rem;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    color: var(--site-terracotta);
+    text-decoration: none;
+}
+
+/* ---------- Navbar ---------- */
+
+.siteHeader {
+    position: relative;
+    z-index: 10;
+    align-self: stretch;
+    background-color: var(--site-navy);
+    color: var(--site-greige);
+}
+
+.siteNav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem clamp(1rem, 3vw, 2.5rem);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.9rem clamp(1rem, 4vw, 2.5rem);
+}
+
+.siteNavLinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.5rem;
+    margin: 0 0 0 auto;
+    padding: 0;
+    list-style: none;
+}
+
+.siteNavLinks a {
+    display: inline-block;
+    padding: 0.35rem 0;
+    border-bottom: 2px solid transparent;
+    color: var(--site-greige);
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.siteNavLinks a:hover,
+.siteNavLinks a:focus-visible {
+    color: #fff;
+}
+
+.siteNavLinks a[aria-current="page"] {
+    color: #fff;
+    border-bottom-color: var(--site-terracotta);
+}
+
+.langSwitcher {
+    display: flex;
+    border: 1px solid var(--site-greige);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.langSwitcher a {
+    padding: 0.3rem 0.8rem;
+    color: var(--site-greige);
+    font-size: 0.85rem;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.langSwitcher a:hover {
+    color: #fff;
+}
+
+.langSwitcher a.isActive {
+    background-color: var(--site-greige);
+    color: var(--site-navy);
+}
+
+.siteNavToggle {
+    display: none;
+}
+
+@media (max-width: 860px) {
+    .langSwitcher {
+        margin-left: auto;
+    }
+
+    /* the link list drops onto its own row under the brand */
+    .siteNavLinks {
+        order: 1;
+        flex-basis: 100%;
+        flex-direction: column;
+        gap: 0;
+        margin: 0;
+    }
+
+    .siteNavLinks a {
+        display: block;
+        padding: 0.65rem 0;
+        border-bottom: 1px solid rgba(202, 195, 191, 0.2);
+    }
+
+    .siteNavLinks a[aria-current="page"] {
+        border-bottom-color: var(--site-terracotta);
+    }
+
+    /* without JavaScript the menu simply stays open */
+    .js .siteNavLinks {
+        display: none;
+    }
+
+    .js .siteHeader.isOpen .siteNavLinks {
+        display: flex;
+    }
+
+    .js .siteNavToggle {
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 2.6rem;
+        height: 2.6rem;
+        padding: 0.55rem;
+        border: 1px solid var(--site-greige);
+        border-radius: 0.5rem;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .siteNavToggle span {
+        display: block;
+        height: 2px;
+        border-radius: 2px;
+        background-color: var(--site-greige);
+    }
+}
+
+/* ---------- Footer ---------- */
+
+/* sticky + top: 100vh keeps the footer at the bottom of the window on short pages */
+.siteFooter {
+    position: sticky;
+    top: 100vh;
+    align-self: stretch;
+    margin-top: auto;
+    border-top: 4px solid var(--site-terracotta);
+    background-color: var(--site-navy);
+    color: var(--site-greige);
+}
+
+.siteFooterInner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(2rem, 5vw, 3rem) clamp(1rem, 4vw, 2.5rem);
+}
+
+.siteFooter p {
+    margin: 0 0 1rem;
+    line-height: 1.6;
+}
+
+.siteFooterAbout p {
+    max-width: 22rem;
+    margin-top: 0.75rem;
+}
+
+.siteFooter h3 {
+    margin: 0 0 0.75rem;
+    color: var(--site-terracotta);
+    font-size: 1.15rem;
+}
+
+.siteFooter ul {
+    display: grid;
+    gap: 0.45rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.siteFooter a {
+    color: var(--site-greige);
+    text-decoration: none;
+}
+
+.siteFooter a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.siteFooter .siteFooterButton {
+    display: inline-block;
+    padding: 0.55em 1.2em;
+    border: 2px solid var(--site-greige);
+    border-radius: 1.5rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.siteFooter .siteFooterButton:hover {
+    background-color: var(--site-greige);
+    color: var(--site-navy);
+    text-decoration: none;
+}
+
+.siteFooter .siteFooterBottom {
+    margin: 0;
+    padding: 1rem;
+    border-top: 1px solid rgba(202, 195, 191, 0.2);
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+@media (max-width: 860px) {
+    .siteFooterInner {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .siteFooterAbout {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 480px) {
+    .siteFooterInner {
+        grid-template-columns: 1fr;
+    }
+}

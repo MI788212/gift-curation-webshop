@@ -13,18 +13,6 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<nav class="navbar">
-    <div class="nav-logo">
-        <a href="#">MyShop</a>
-    </div>
-    <ul class="nav-links">
-        <li><a href="#">Почетна</a></li>
-        <li><a href="#">Производи</a></li>
-        <li><a href="#">За нас</a></li>
-        <li><a href="#">Контакт</a></li>
-    </ul>
-</nav>
-
 <div id="body">
     <div id="product-profile">
         <img th:src="@{${product.imageUrl}}" src="https://via.placeholder.com/200" alt="Product image">
@@ -35,7 +23,7 @@
 
             <h1 th:text="${product.name}">Product name</h1>
             <p class="discription" th:text="${#numbers.formatDecimal(product.price, 0, 0)} + ' ден.'">0</p>
-            <p th:text="${product.description}">Тука оди описот на продуктот...</p>
+            <p th:text="${product.descriptionFor(#locale.language)}">Тука оди описот на продуктот...</p>
 
         <div id="product-functions-functions">
             <div class="fav-wrapper">
@@ -127,6 +115,8 @@
     });
 </script>
 
+
+<div th:replace="~{fragments/footer :: footer}"></div>
 
 </body>
 </html>
