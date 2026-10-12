@@ -7,12 +7,15 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.Arrays;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class ProductController {
@@ -40,6 +43,15 @@ public class ProductController {
     @ModelAttribute("categories")
     public Category[] categories() {
         return Category.values();
+    }
+
+    // Lets products.html fill in the hearts of products that are already favourites
+    @ModelAttribute("favoriteProductIds")
+    public Set<Long> favoriteProductIds(@CookieValue(name = "favorites", defaultValue = "") String favorites) {
+        return Arrays.stream(favorites.split("-"))
+                .filter(id -> id.matches("\\d{1,18}"))
+                .map(Long::valueOf)
+                .collect(Collectors.toSet());
     }
 
     @GetMapping("/products/{id}")

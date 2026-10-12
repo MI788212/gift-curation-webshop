@@ -15,7 +15,7 @@
 
 <div id="body">
     <div id="product-profile">
-        <img th:src="@{${product.imageUrl}}" src="https://via.placeholder.com/200" alt="Product image">
+        <img th:src="@{${product.imageUrl}}" src="https://via.placeholder.com/200" alt="Product image" th:alt="${product.name}">
     </div>
 
 
@@ -30,13 +30,16 @@
                 <button type="button" id="favBtn"
                         class="btn btn-fav"
                         th:classappend="${isFavorite} ? 'active' : ''"
-                        th:onclick="'toggleFavorite(' + ${product.id} + ')'">
+                        th:onclick="'toggleFavorite(' + ${product.id} + ')'"
+                        th:title="#{products.favoriteButton}">
 
                     <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                     </svg>
                 </button>
-                <span id="favMessage" class="fav-message"></span>
+                <span id="favMessage" class="fav-message" role="status"
+                      th:data-added="#{product-detail.addedToFavorites}"
+                      th:data-removed="#{product-detail.removedFromFavorites}"></span>
             </div>
 
 
@@ -51,14 +54,14 @@
                         </div>
 
                         <!-- Копче за додавање во кошничка -->
-                        <button type="submit" class="btn-add-to-cart">Add to cart</button>
+                        <button type="submit" class="btn-add-to-cart" th:text="#{product-detail.addToCart}">Add to cart</button>
                     </div>
                 </form>
 
                 <div class="bottom-navigation-links">
-                    <a th:href="@{/products}" class="back-link">All products</a>
+                    <a th:href="@{/products}" class="back-link" th:text="#{product-detail.allProducts}">All products</a>
                     <span class="link-divider">|</span>
-                    <a th:href="@{/favorites}" class="back-link">My favorites</a>
+                    <a th:href="@{/favorites}" class="back-link" th:text="#{product-detail.myFavorites}">My favorites</a>
                 </div>
         </div>
     </div>
@@ -84,11 +87,11 @@
         if (!isFav) {
             fetch('/favorites/add?productId=' + id, { method: 'POST' });
             btn.classList.add('active');
-            msg.textContent = "Added to favorites";
+            msg.textContent = msg.dataset.added;
         } else {
             fetch('/favorites/remove-ajax?productId=' + id, { method: 'POST' });
             btn.classList.remove('active');
-            msg.textContent = "Removed from favorites";
+            msg.textContent = msg.dataset.removed;
         }
 
         // 2. Приказ на пораката
