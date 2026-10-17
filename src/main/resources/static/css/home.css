@@ -20,7 +20,17 @@
     display: block;
 }
 
+.hero {
+    position: relative;   /* makes .content position itself against this box */
+    width: 100%;
+}
+
 #headerVideo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 7;
+    object-fit: cover;
+    display: block;
     clip-path: ellipse(100% 100% at 50% 0%);
 }
 
@@ -31,10 +41,8 @@
     width: 100%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: white;
     background: rgb(17, 34, 80, 0.8);
     padding: 10px 20px;
-    display: inline-block;
 }
 
 .content h1 {
