@@ -11,7 +11,7 @@
 
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
-<h1><span th:text="#{order-confirmation.thankYou}">Thank you</span>, <span th:text="${order.customerName}">Name</span>!</h1>
+<h1 class="pageTitle"><span th:text="#{order-confirmation.thankYou}">Thank you</span>, <span th:text="${order.customerName}">Name</span>!</h1>
 <p th:text="#{order-confirmation.confirmation(${order.id})}">Your order #<span th:text="${order.id}">1</span> has been placed.</p>
 
 <div th:each="item : ${order.items}">

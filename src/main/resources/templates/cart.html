@@ -12,7 +12,7 @@
 <div th:replace="~{fragments/navbar :: navbar}"></div>
 
 <main class="cartPage">
-    <h1 th:text="#{cart.title}">Your Cart</h1>
+    <h1 class="pageTitle" th:text="#{cart.title}">Your Cart</h1>
 
     <div class="cartEmpty" th:if="${cart.cartEmpty}">
         <p th:text="#{cart.cartEmpty}">Your cart is empty.</p>
@@ -29,7 +29,7 @@
                            onchange="this.form.submit()" />
                 </form>
 
-                <span class="cartItemPrice" th:text="${#numbers.formatDecimal(cart.products.get(entry.key).price, 0, 0)} + ' ден.'">0 ден.</span>
+                <span class="cartItemPrice" th:text="|${#numbers.formatDecimal(cart.products.get(entry.key).price, 0, 0)} #{currency}|">0 ден.</span>
 
                 <form class="cartItemRemove" th:action="@{/cart/remove}" method="post">
                     <input type="hidden" name="productId" th:value="${entry.key}" />
@@ -41,13 +41,14 @@
         <div class="cartSummary">
             <h3>
                 <span th:text="#{cart.total}">Total:</span>
-                <span th:text="${#numbers.formatDecimal(cart.total, 0, 0)} + ' ден.'">0 ден.</span>
+                <span th:text="|${#numbers.formatDecimal(cart.total, 0, 0)} #{currency}|">0 ден.</span>
             </h3>
             <a class="cartCheckoutBtn" th:unless="${cart.cartEmpty}" th:href="@{/checkout}" th:text="#{cart.proceedToCheckout}">Proceed to checkout</a>
         </div>
     </div>
 
-    <a class="cartContinueLink" th:href="@{/products}" th:text="#{cart.continueShopping}">Continue shopping</a>
+    <a class="cartContinueLink" th:classappend="${cart.cartEmpty} ? 'isPrimary'"
+       th:href="@{/products}" th:text="#{cart.continueShopping}">Continue shopping</a>
 </main>
 
 <div th:replace="~{fragments/footer :: footer}"></div>

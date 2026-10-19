@@ -116,12 +116,12 @@ h3{
 
 /* ==========================================
    ОСНОВНА СОСТОЈБА (Кога НЕ Е омилено):
-   - Позадина: rgb(17, 34, 80)
-   - Икона (срце): бела (#ffffff)
+   - Позадина: бела (#ffffff)
+   - Икона (срце): rgb(17, 34, 80)
    ========================================== */
 .btn-add-fav {
     position: relative;
-    background-color: rgb(17, 34, 80);
+    background-color: #ffffff;
     border: 0.15rem solid rgb(17, 34, 80);
     border-radius: 50%;
     width: 2.4rem;
@@ -138,68 +138,68 @@ h3{
 .btn-add-fav .heart-icon {
     width: 1.3rem;
     height: 1.3rem;
-    fill: #ffffff; /* Бело срце */
+    fill: rgb(17, 34, 80); /* Сино срце */
     transition: fill 0.25s ease, transform 0.2s ease;
 }
 
 /* Hover кога уште НЕ Е омилено (се обраќаат боите):
-   - Позадина: бела (#ffffff)
-   - Икона (срце): rgb(17, 34, 80)
-*/
-.btn-add-fav:hover {
-    background-color: #ffffff;
-    border-color: rgb(17, 34, 80);
-}
-
-.btn-add-fav:hover .heart-icon {
-    fill: rgb(17, 34, 80);
-}
-
-/* ==========================================
-   АКТИВНА СОСТОЈБА (.active - КОГА Е ДОДАДЕНО):
-   - Позадина: бела (#ffffff)
-   - Икона (срце): rgb(17, 34, 80)
-   ========================================== */
-.btn-add-fav.active {
-    background-color: #ffffff;
-    border-color: rgb(17, 34, 80);
-}
-
-.btn-add-fav.active .heart-icon {
-    fill: rgb(17, 34, 80);
-}
-
-/* Reverse Hover - Кога ВЕЌЕ Е омилено, при hover ги покажува почетните бои:
    - Позадина: rgb(17, 34, 80)
    - Икона (срце): бела (#ffffff)
 */
-.btn-add-fav.active:hover {
+.btn-add-fav:hover {
     background-color: rgb(17, 34, 80);
     border-color: rgb(17, 34, 80);
 }
 
-.btn-add-fav.active:hover .heart-icon {
+.btn-add-fav:hover .heart-icon {
     fill: #ffffff;
+}
+
+/* ==========================================
+   АКТИВНА СОСТОЈБА (.active - КОГА Е ДОДАДЕНО):
+   - Позадина: rgb(17, 34, 80)
+   - Икона (срце): бела (#ffffff)
+   ========================================== */
+.btn-add-fav.active {
+    background-color: rgb(17, 34, 80);
+    border-color: rgb(17, 34, 80);
+}
+
+.btn-add-fav.active .heart-icon {
+    fill: #ffffff;
+}
+
+/* Reverse Hover - Кога ВЕЌЕ Е омилено, при hover ги покажува почетните бои:
+   - Позадина: бела (#ffffff)
+   - Икона (срце): rgb(17, 34, 80)
+*/
+.btn-add-fav.active:hover {
+    background-color: #ffffff;
+    border-color: rgb(17, 34, 80);
+}
+
+.btn-add-fav.active:hover .heart-icon {
+    fill: rgb(17, 34, 80);
 }
 
 /* Спречување фликеринг веднаш по клик */
 .btn-add-fav.no-hover {
-    background-color: rgb(17, 34, 80) !important;
-    border-color: rgb(17, 34, 80) !important;
-}
-
-.btn-add-fav.no-hover .heart-icon {
-    fill: #ffffff !important;
-    transform: none !important;
-}
-
-.btn-add-fav.active.no-hover {
     background-color: #ffffff !important;
     border-color: rgb(17, 34, 80) !important;
 }
 
-.btn-add-fav.active.no-hover .heart-icon {
+.btn-add-fav.no-hover .heart-icon {
     fill: rgb(17, 34, 80) !important;
+    transform: none !important;
+}
+
+.btn-add-fav.active.no-hover {
+    background-color: rgb(17, 34, 80) !important;
+    border-color: rgb(17, 34, 80) !important;
+}
+
+.btn-add-fav.active.no-hover .heart-icon {
+    fill: #ffffff !important;
     transform: none !important;
 }
 

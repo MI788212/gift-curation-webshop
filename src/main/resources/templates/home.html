@@ -73,7 +73,7 @@
         <a th:each="p : ${featuredProducts}" th:href="@{/products/{id}(id=${p.id})}" class="productCard">
             <img th:src="${p.imageUrl}" th:alt="${p.name}" src="images/product1.jpg" alt="Product">
             <h3 th:text="${p.name}">Product name</h3>
-            <p th:text="${#numbers.formatDecimal(p.price, 0, 0)} + ' ден.'">1299 ден.</p>
+            <p th:text="|${#numbers.formatDecimal(p.price, 0, 0)} #{currency}|">1299 ден.</p>
         </a>
 
     </div>

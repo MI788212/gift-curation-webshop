@@ -22,7 +22,7 @@
     <div id="products-functions">
 
             <h1 th:text="${product.name}">Product name</h1>
-            <p class="discription" th:text="${#numbers.formatDecimal(product.price, 0, 0)} + ' ден.'">0</p>
+            <p class="discription" th:text="|${#numbers.formatDecimal(product.price, 0, 0)} #{currency}|">0</p>
             <p th:text="${product.descriptionFor(#locale.language)}">Тука оди описот на продуктот...</p>
 
         <div id="product-functions-functions">

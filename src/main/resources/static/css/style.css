@@ -4,10 +4,26 @@
     --site-terracotta: rgb(184, 105, 79);
 }
 
+@font-face {
+    font-family: 'MyFont';
+    src: url('../font/adelia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
     background-color: rgb(202, 195, 191);
+}
+
+/* The main heading of each page; same size and distance from the navbar everywhere */
+.pageTitle {
+    margin: 2.5rem 0 1.5rem;
+    color: var(--site-navy);
+    font-size: clamp(2.25rem, 6vw, 3rem);
+    line-height: 1.2;
+    text-align: center;
 }
 
 /* Some page stylesheets set a colour on every element (*), so header and
@@ -18,25 +34,32 @@ body {
     color: inherit;
 }
 
+/* Same lettering as the "Man Cave" title on the home page */
 .siteHeader .siteBrand,
 .siteFooter .siteBrand {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-style: italic;
-    font-size: 1.7rem;
-    letter-spacing: 0.02em;
+    font-family: 'MyFont', Georgia, serif;
+    font-size: 1.6rem;
+    line-height: 1;
     white-space: nowrap;
     color: var(--site-terracotta);
     text-decoration: none;
 }
 
+.siteFooter .siteBrand {
+    font-size: 2.2rem;
+}
+
 /* ---------- Navbar ---------- */
 
+/* stays at the top while scrolling, above everything on the page */
 .siteHeader {
-    position: relative;
-    z-index: 10;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     align-self: stretch;
     background-color: var(--site-navy);
     color: var(--site-greige);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .siteNav {
