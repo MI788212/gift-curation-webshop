@@ -1,10 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.cart.Cart;
+import com.example.demo.cart.CartCookieService;
 import com.example.demo.model.Order;
 import com.example.demo.model.OrderItem;
 import com.example.demo.model.Product;
 import com.example.demo.repository.OrderRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,23 +20,27 @@ import java.util.Map;
 @Controller
 public class CheckoutController {
 
-    private final Cart cart;
+    private final CartCookieService cartCookieService;
     private final OrderRepository orderRepository;
 
-    public CheckoutController(Cart cart, OrderRepository orderRepository) {
-        this.cart = cart;
+    public CheckoutController(CartCookieService cartCookieService, OrderRepository orderRepository) {
+        this.cartCookieService = cartCookieService;
         this.orderRepository = orderRepository;
     }
 
     @GetMapping("/checkout")
-    public String showCheckout(Model model) {
-        model.addAttribute("cart", cart);
+    public String showCheckout(HttpServletRequest request, Model model) {
+        model.addAttribute("cart", cartCookieService.load(request));
         return "checkout";
     }
 
     @PostMapping("/checkout")
     public String placeOrder(@RequestParam String customerName,
-                             @RequestParam String customerEmail) {
+                             @RequestParam String customerEmail,
+                             HttpServletRequest request,
+                             HttpServletResponse response) {
+
+        Cart cart = cartCookieService.load(request);
 
         Order order = new Order();
         order.setCustomerName(customerName);
@@ -54,6 +61,7 @@ public class CheckoutController {
 
         Order savedOrder = orderRepository.save(order);
         cart.clear();
+        cartCookieService.save(response, cart); // empty cart -> deletes the cookie
 
         return "redirect:/order-confirmation/" + savedOrder.getId();
     }

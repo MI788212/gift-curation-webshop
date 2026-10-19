@@ -47,7 +47,7 @@ public class Cart {
     public void setQuantity(Long productId, int quantity) {
         if (quantity <= 0) {
             removeItem(productId);
-        } else {
+        } else if (items.containsKey(productId)) {
             items.put(productId, quantity);
         }
     }
