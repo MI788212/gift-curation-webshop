@@ -14,18 +14,12 @@ body {
     width: 90%;
     max-width: 1000px;
     margin: 0 auto;
-    padding: clamp(30px, 6vw, 70px) 0;
+    padding: 0 0 clamp(30px, 6vw, 70px);
 }
 
 .contactHero {
     text-align: center;
     margin-bottom: clamp(25px, 5vw, 50px);
-}
-
-.contactHero h1 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    color: var(--contact-accent);
-    margin-bottom: 10px;
 }
 
 .contactHero p {

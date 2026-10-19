@@ -46,6 +46,7 @@ h3 {
     gap: 1.25rem;
     justify-content: center;
     padding: 1.25rem;
+    margin-bottom:50px;
 }
 
 /* Картичка за продукт */
@@ -124,7 +125,7 @@ h3 {
 
 .btn-remove-fav {
     position: relative;
-    background-color: #ffffff; /* Бела позадина за да се слее со картичката */
+    background-color: rgb(17, 34, 80); /* Сина позадина: изгледот на омилен продукт */
     border-radius: 50%;
     width: 2.4rem;
     height: 2.4rem;
@@ -140,7 +141,7 @@ h3 {
 
 .btn-remove-fav:hover {
     transform: scale(1.1);
-    background-color: #ffffff;
+    background-color: rgb(17, 34, 80);
 }
 
 .heart-icon {
@@ -148,6 +149,10 @@ h3 {
     height: 1.3rem;
     fill: rgb(17, 34, 80); /* Ја задржува истата боја */
     transition: opacity 0.2s ease;
+}
+
+.btn-remove-fav .heart-icon {
+    fill: #ffffff;
 }
 
 /* Избриши ја претходната дефиниција каде што се менуваше во црвено:
@@ -160,7 +165,7 @@ h3 {
     position: absolute;
     width: 0; /* Стандардно ширината е 0 за да не се гледа */
     height: 2.5px; /* Дебелина на цртата */
-    background-color: rgb(17, 34, 80); /* Истата темно сина боја */
+    background-color: #ffffff; /* Бела, за да се гледа на сината позадина */
 
     /* Го поставуваме центарот и аголот за линија од долу-лево кон горе-десно */
     top: 50%;

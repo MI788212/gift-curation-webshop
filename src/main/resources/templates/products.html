@@ -13,7 +13,7 @@
 
 <div id="body">
 
-    <h1 th:text="#{products.title}">Products</h1>
+    <h1 class="pageTitle" th:text="#{products.title}">Products</h1>
 
     <nav class="categoryFilter" th:aria-label="#{products.filter.label}">
         <a th:href="@{/products}" th:text="#{products.filter.all}"
@@ -56,7 +56,7 @@
             <!-- Цена -->
             <div class="price-div">
                 <p th:text="${#numbers.formatDecimal(p.price, 0, 0)}">0</p>
-                <p>&nbsp;ден.</p>
+                <p>&nbsp;<span th:text="#{currency}">ден.</span></p>
             </div>
 
         </div>

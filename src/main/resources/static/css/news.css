@@ -14,14 +14,7 @@ body {
     width: 90%;
     max-width: 850px;
     margin: 0 auto;
-    padding: clamp(30px, 6vw, 60px) 0;
-}
-
-.newsPage h1 {
-    text-align: center;
-    color: var(--news-dark-bg);
-    font-size: xxx-large;
-    margin-bottom: 0.5rem;
+    padding: 0 0 clamp(30px, 6vw, 60px);
 }
 
 .newsSubtitle {
