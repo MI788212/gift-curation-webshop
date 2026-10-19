@@ -129,7 +129,8 @@ body>div.heroAboutUs>div>h1>span {
     width: 100%;
     height: 200px;
 
-    margin-top: 150px;
+    margin-top: 50px;
+    margin-bottom: -100px;
 
     background: rgb(17, 34, 80);
 
