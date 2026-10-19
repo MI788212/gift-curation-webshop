@@ -101,7 +101,7 @@ body {
     box-shadow: 0 4px 12px rgba(17, 34, 80, 0.25);
     color: #fff;
     font-size: clamp(1rem, 1.4vw, 1.15rem);
-    font-weight: bold;
+    letter-spacing: 0.04em;
     text-decoration: none;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -228,7 +228,8 @@ body {
 }
 
 /* The closing statement and the footer form one dark block: the accent line
-   sits on top of the statement and the footer drops its own line and logo. */
+   sits on top of the statement, and the footer drops its own line, its logo
+   and description, and centres its remaining columns. */
 .whyManCave {
     width: 100%;
     background-color: rgb(17, 34, 80);
@@ -242,12 +243,16 @@ body {
     border-top: none;
 }
 
-.whyManCave + .siteFooter .siteFooterAbout .siteBrand {
+.whyManCave + .siteFooter .siteFooterAbout {
     display: none;
 }
 
-.whyManCave + .siteFooter .siteFooterAbout p {
-    margin-top: 0;
+.whyManCave + .siteFooter .siteFooterInner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem clamp(2.5rem, 8vw, 6rem);
+    text-align: center;
 }
 
 .whyManCaveContent {

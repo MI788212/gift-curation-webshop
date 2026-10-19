@@ -7,6 +7,11 @@
         <a class="siteBrand" th:href="@{/}">Man Cave</a>
 
         <ul class="siteNavLinks" id="siteNavLinks">
+            <li><a th:href="@{/}" th:text="#{navbar.home}">Home</a></li>
+            <li><a th:href="@{/products}" th:text="#{navbar.products}">Products</a></li>
+            <li><a th:href="@{/about}" th:text="#{navbar.about}">About</a></li>
+            <li><a th:href="@{/news}" th:text="#{navbar.news}">News</a></li>
+            <li><a th:href="@{/contact}" th:text="#{navbar.contact}">Contact</a></li>
             <li>
                 <a class="siteNavIcon" th:href="@{/favorites}" th:title="#{navbar.favorites}">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -23,11 +28,6 @@
                     <span class="siteNavLabel" th:text="#{navbar.cart}">Cart</span>
                 </a>
             </li>
-            <li><a th:href="@{/}" th:text="#{navbar.home}">Home</a></li>
-            <li><a th:href="@{/products}" th:text="#{navbar.products}">Products</a></li>
-            <li><a th:href="@{/about}" th:text="#{navbar.about}">About</a></li>
-            <li><a th:href="@{/news}" th:text="#{navbar.news}">News</a></li>
-            <li><a th:href="@{/contact}" th:text="#{navbar.contact}">Contact</a></li>
         </ul>
 
         <div class="langSwitcher" role="group" th:aria-label="#{navbar.language}">
