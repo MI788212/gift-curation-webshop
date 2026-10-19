@@ -86,17 +86,30 @@ body {
 }
 
 .homeIntroductionContent p {
-    font-size: clamp(0.9rem, 1.8vw, 1.2rem);
+    font-size: clamp(1.05rem, 2.2vw, 1.4rem);
+    line-height: 1.5;
     margin-bottom: 18px;
 }
 
+/* "Shop now" */
 .homeIntroductionContent a {
     display: inline-block;
-    padding: 10px 20px;
-    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    margin-top: 6px;
+    padding: 0.8em 2em;
+    border-radius: 1.5rem;
+    background-color: rgb(17, 34, 80);
+    box-shadow: 0 4px 12px rgba(17, 34, 80, 0.25);
+    color: #fff;
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    font-weight: bold;
     text-decoration: none;
-    border-radius: 8px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.homeIntroductionContent a:hover {
+    background-color: rgb(184, 105, 79);
+    transform: translateY(-2px);
 }
 
 .categories {
@@ -214,12 +227,27 @@ body {
     color: white;
 }
 
+/* The closing statement and the footer form one dark block: the accent line
+   sits on top of the statement and the footer drops its own line and logo. */
 .whyManCave {
     width: 100%;
     background-color: rgb(17, 34, 80);
     color: rgb(202, 195, 191);
+    border-top: 4px solid rgb(184, 105, 79);
 
-    padding: clamp(40px, 7vw, 80px) 20px;
+    padding: clamp(40px, 7vw, 80px) 20px clamp(10px, 2vw, 20px);
+}
+
+.whyManCave + .siteFooter {
+    border-top: none;
+}
+
+.whyManCave + .siteFooter .siteFooterAbout .siteBrand {
+    display: none;
+}
+
+.whyManCave + .siteFooter .siteFooterAbout p {
+    margin-top: 0;
 }
 
 .whyManCaveContent {
@@ -234,5 +262,27 @@ body {
     color: rgb(184, 105, 79);
     font-family: 'MyFont';
     font-size: clamp(2rem, 2vh, 3.5rem);
+}
+
+.whyManCave h2 span {
+    color: inherit;
+}
+
+/* "Man Cave" in the closing statement takes you back to the top */
+.whyManCaveBrand {
+    color: rgb(184, 105, 79);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.whyManCaveBrand:hover,
+.whyManCaveBrand:focus-visible {
+    color: rgb(202, 195, 191);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 /* end index/home page */

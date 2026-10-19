@@ -101,6 +101,29 @@ body {
     border-bottom-color: var(--site-terracotta);
 }
 
+/* Favourites and cart are shown as icons */
+.siteNavLinks .siteNavIcon {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.siteNavIcon svg {
+    width: 1.35rem;
+    height: 1.35rem;
+    fill: currentColor;
+}
+
+/* their names stay readable for screen readers, the phone menu shows them */
+.siteNavIcon .siteNavLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
 .langSwitcher {
     display: flex;
     border: 1px solid var(--site-greige);
@@ -153,6 +176,18 @@ body {
 
     .siteNavLinks a[aria-current="page"] {
         border-bottom-color: var(--site-terracotta);
+    }
+
+    .siteNavLinks .siteNavIcon {
+        display: flex;
+    }
+
+    .siteNavIcon .siteNavLabel {
+        position: static;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        clip-path: none;
     }
 
     /* without JavaScript the menu simply stays open */
